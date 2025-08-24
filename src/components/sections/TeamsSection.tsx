@@ -240,9 +240,6 @@ export default function TeamsSection() {
 
         {/* View All Teams Button */}
         <div className="text-center mt-12">
-          <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl">
-            View Full Schedule
-          </button>
         </div>
       </div>
     </section>
