@@ -20,7 +20,7 @@ export default function TournamentHistorySection() {
       year: 2024,
       date: "Sep 4 - 15, 2024",
       teamsCount: 16,
-      winner: "Team Spirit",
+      winner: "Team Liquid",
       runnerUp: "Gaimin Gladiators",
       prizePool: "$3,200,000",
       location: "Seattle, USA",
@@ -31,8 +31,8 @@ export default function TournamentHistorySection() {
       year: 2023,
       date: "Oct 12 - 29, 2023",
       teamsCount: 20,
-      winner: "Gaimin Gladiators",
-      runnerUp: "Team Liquid",
+      winner: "Team Spirit",
+      runnerUp: "Gaimin Gladiators",
       prizePool: "$2,200,000",
       location: "Seattle, USA",
       champion: "Dyrachyo",
@@ -178,7 +178,25 @@ export default function TournamentHistorySection() {
     "Natus Vincere": "/Natus Vincere.png",
   };
 
-  const getTiNumber = (year: number) => Math.max(1, year - 2011 + 1);
+  // Custom TI numbering: no TI10 (2020 skipped). Map explicitly for clarity.
+  const tiNumberMap: Record<number, number> = {
+    2011: 1,
+    2012: 2,
+    2013: 3,
+    2014: 4,
+    2015: 5,
+    2016: 6,
+    2017: 7,
+    2018: 8,
+    2019: 9,
+    // 2020 canceled
+    2021: 10,
+    2022: 11,
+    2023: 12,
+    2024: 13,
+    2025: 14,
+  };
+  const getTiNumber = (year: number) => tiNumberMap[year] ?? Math.max(1, year - 2011 + 1);
 
   return (
     <section className="py-20 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
@@ -265,7 +283,6 @@ export default function TournamentHistorySection() {
                       )}
                       <div className="min-w-0">
                         <h3 className="text-lg md:text-xl font-bold text-white truncate">{ti.winner}</h3>
-                        {ti.champion && <p className="text-purple-300 text-xs md:text-sm">Champion: {ti.champion}</p>}
                       </div>
                       </div>
 
