@@ -1,5 +1,7 @@
+"use client";
 import CountdownTimer from "../ui/CountdownTimer";
 import Image from "next/image";
+import FadeIn from "../ui/FadeIn";
 
 export default function HeroSection() {
   return (
@@ -72,38 +74,38 @@ export default function HeroSection() {
         </div>
 
         {/* Main Title */}
-        <div className="mb-12">
+        <FadeIn className="mb-12">
           <h1 className="text-10xl md:text-8xl font-light text-purple-200 mb-6 tracking-wide">
             The International
           </h1>
           <h2 className="text-5xl md:text-7xl font-light text-purple-200 tracking-wide">
             2025
           </h2>
-        </div>
+        </FadeIn>
 
         {/* Description */}
-        <div className="mb-16 max-w-3xl mx-auto">
+        <FadeIn className="mb-16 max-w-3xl mx-auto">
           <p className="text-xl text-gray-300 leading-relaxed">
             The ultimate Dota 2 championship returns with the world's elite teams competing for glory and the largest prize pool in esports history.
           </p>
-        </div>
+        </FadeIn>
 
         {/* Prize Pool */}
-        <div className="mb-16">
+        <FadeIn className="mb-16">
           <div className="text-lg text-white font-light mb-2">Current Prize Pool</div>
           <div className="text-6xl md:text-7xl font-bold text-white-400">
           $2,034,420
           </div>
-        </div>
+        </FadeIn>
 
         {/* Countdown Timer */}
-        <div className="mb-16">
+        <FadeIn className="mb-16">
           <div className="text-lg text-white font-light mb-6">Upcoming</div>
           <CountdownTimer />
-        </div>
+        </FadeIn>
 
         {/* Event Details */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 max-w-3xl mx-auto">
+        <FadeIn className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 max-w-3xl mx-auto">
           <div className="flex flex-col items-center">
             <div className="w-6 h-6 mb-3">
               <svg className="w-full h-full text-gray-400" fill="currentColor" viewBox="0 0 20 20">
@@ -130,17 +132,17 @@ export default function HeroSection() {
             </div>
             <div className="text-white font-light">Doors Open: 10:00 AM PDT</div>
           </div>
-        </div>
+        </FadeIn>
 
         {/* Call to Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <FadeIn className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <button className="bg-purple-600 hover:bg-purple-700 text-white font-medium py-4 px-8 rounded-none text-lg transition-all duration-300 hover:scale-105 min-w-[160px]">
             Buy Tickets
           </button>
           <button className="bg-transparent border border-white text-white font-medium py-4 px-8 rounded-none text-lg transition-all duration-300 hover:bg-white hover:text-black min-w-[160px]">
             Watch Trailer
           </button>
-        </div>
+        </FadeIn>
       </div>
     </section>
   );

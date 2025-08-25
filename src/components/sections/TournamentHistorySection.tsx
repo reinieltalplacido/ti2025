@@ -1,6 +1,8 @@
 "use client";
+"use client";
 import { useState } from "react";
 import Image from "next/image";
+import FadeIn from "../ui/FadeIn";
 
 export default function TournamentHistorySection() {
   // Mock tournament history data - you can replace with real data
@@ -226,7 +228,7 @@ export default function TournamentHistorySection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <FadeIn className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
             Tournament History
           </h2>
@@ -253,7 +255,7 @@ export default function TournamentHistorySection() {
               ))}
             </div>
           </div>
-        </div>
+        </FadeIn>
 
         {/* History Timeline */}
         <div className="relative">
@@ -271,7 +273,7 @@ export default function TournamentHistorySection() {
                 <div className="absolute left-4 md:left-6 top-6 -translate-x-1/2 w-3 h-3 bg-purple-500 rounded-full ring-4 ring-purple-900/60 shadow z-10"></div>
                 
                 {/* Content Card */}
-                <div className={`flex-1`}>
+                <FadeIn className={`flex-1`} delayMs={index * 80}>
                   <div className="relative bg-gradient-to-br from-white/5 via-purple-900/15 to-purple-800/10 backdrop-blur-md rounded-xl p-5 md:p-6 border border-white/10 hover:border-purple-400/40 transition-all duration-300">
                     {/* Year Badge (Centered TI number) */}
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2">
@@ -353,7 +355,7 @@ export default function TournamentHistorySection() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </FadeIn>
                 
                 {/* Spacer for mobile */}
                 <div className="md:hidden w-full h-4"></div>
