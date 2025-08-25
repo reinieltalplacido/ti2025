@@ -165,17 +165,36 @@ export default function TournamentHistorySection() {
 
   const visibleHistory = showAll ? tiHistory : tiHistory.slice(0, 3);
 
+  // Default placeholder logo for unknown/TBD winners
+  const defaultWinnerLogo = "/50px-Dota2_Aegis_allmode.png";
+
   const winnerLogoMap: Record<string, string> = {
     "Team Spirit": "/team Spirit.png",
     "Team Liquid": "/Liquid.png",
     "Tundra Esports": "/Tundra.png",
     "Natus Vincere": "/Natus Vincere.png",
+    // Newly added mappings based on available assets in /public
+    "OG": "/OG.png",
+    "Wings Gaming": "/wingsgaming.png",
+    "Evil Geniuses": "/EvilGeniuses.png",
+    "Newbee": "/newbee.png",
+    "Alliance": "/Alliance.png",
+    "Invictus Gaming": "/Invictus GAming.png",
     // Add more mappings when assets are available
   };
 
   const runnerUpLogoMap: Record<string, string> = {
     "Team Liquid": "/Liquid.png",
     "Natus Vincere": "/Natus Vincere.png",
+    // Newly added mappings based on available assets in /public
+    "Gaimin Gladiators": "/GaiminGladiators.png",
+    "Team Secret": "/Team Secret.png",
+    "PSG.LGD": "/psglgd.png",
+    "Digital Chaos": "/DIgital Chaos.png",
+    "CDEC Gaming": "/CdecGaming.png",
+    "Vici Gaming": "/VIciGaming.png",
+    "Newbee": "/newbee.png",
+    "EHOME": "/Ehome.png",
   };
 
   // Custom TI numbering: no TI10 (2020 skipped). Map explicitly for clarity.
@@ -277,8 +296,15 @@ export default function TournamentHistorySection() {
                           />
                         </div>
                       ) : (
-                        <div className="text-3xl" aria-hidden>
-                          {ti.logo}
+                        <div className="relative w-10 h-10 shrink-0">
+                          <Image
+                            src={defaultWinnerLogo}
+                            alt={`${ti.winner} placeholder logo`}
+                            fill
+                            className="object-contain"
+                            sizes="40px"
+                            priority
+                          />
                         </div>
                       )}
                       <div className="min-w-0">
