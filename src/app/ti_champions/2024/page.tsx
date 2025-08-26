@@ -203,10 +203,64 @@ export default function TI2024Page() {
         <div>Sixteen teams play Bo3 head-to-head matches to determine main event bracket placement.</div>
       </div>
 
-      {/* Playoffs Bracket (Placeholder) */}
+      {/* Playoffs Bracket */}
       <h2 style={{ margin: '32px 0 16px' }}>Playoffs</h2>
-      <div style={{ background: '#231942', borderRadius: 12, padding: 16, marginBottom: 32 }}>
-        <div>Bracket coming soon! (You can add a bracket component or image here.)</div>
+      <div style={{ background: '#231942', borderRadius: 12, padding: 16, marginBottom: 32, overflowX: 'auto' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', gap: 32, minWidth: 1200 }}>
+          {/* Upper Bracket Quarterfinals */}
+          <div style={{ minWidth: 180 }}>
+            <div style={{ fontWeight: 700, color: '#fff', marginBottom: 8 }}>Upper Bracket Quarterfinals</div>
+            {[
+              { t1: 'Xtreme Gaming', t2: 'Team Liquid', s1: 0, s2: 2 },
+              { t1: 'Cloud9', t2: 'Aurora Gaming', s1: 2, s2: 1 },
+              { t1: 'Team Falcons', t2: 'Tundra Esports', s1: 0, s2: 2 },
+              { t1: 'Nouns Esports', t2: 'Gaimin Gladiators', s1: 1, s2: 2 },
+            ].map((m, i) => (
+              <BracketMatch key={i} {...m} />
+            ))}
+          </div>
+          {/* Upper Bracket Semifinals */}
+          <div style={{ minWidth: 180 }}>
+            <div style={{ fontWeight: 700, color: '#fff', marginBottom: 8 }}>Upper Bracket Semifinals</div>
+            {[
+              { t1: 'Team Liquid', t2: 'Cloud9', s1: 2, s2: 0 },
+              { t1: 'Tundra Esports', t2: 'Gaimin Gladiators', s1: 0, s2: 2 },
+            ].map((m, i) => (
+              <BracketMatch key={i} {...m} />
+            ))}
+          </div>
+          {/* Upper Bracket Final */}
+          <div style={{ minWidth: 180 }}>
+            <div style={{ fontWeight: 700, color: '#fff', marginBottom: 8 }}>Upper Bracket Final</div>
+            <BracketMatch t1="Team Liquid" t2="Gaimin Gladiators" s1={2} s2={1} />
+          </div>
+          {/* Grand Final */}
+          <div style={{ minWidth: 180 }}>
+            <div style={{ fontWeight: 700, color: '#fff', marginBottom: 8 }}>Grand Final</div>
+            <BracketMatch t1="Team Liquid" t2="Gaimin Gladiators" s1={3} s2={0} />
+          </div>
+          {/* Lower Bracket */}
+          <div style={{ minWidth: 400 }}>
+            <div style={{ fontWeight: 700, color: '#fff', marginBottom: 8 }}>Lower Bracket</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {/* Lower Bracket Rounds, simplified for static view */}
+              <BracketMatch t1="Talon Esports" t2="BetBoom Team" s1={1} s2={2} />
+              <BracketMatch t1="1w Team" t2="Team Zero" s1={2} s2={0} />
+              <BracketMatch t1="beastcoast" t2="HEROIC" s1={1} s2={2} />
+              <BracketMatch t1="Team Spirit" t2="G2 x iG" s1={2} s2={0} />
+              <BracketMatch t1="Nouns Esports" t2="BetBoom Team" s1={0} s2={2} />
+              <BracketMatch t1="Team Falcons" t2="1w Team" s1={2} s2={0} />
+              <BracketMatch t1="Aurora Gaming" t2="HEROIC" s1={2} s2={1} />
+              <BracketMatch t1="Xtreme Gaming" t2="Team Spirit" s1={2} s2={1} />
+              <BracketMatch t1="BetBoom Team" t2="Team Falcons" s1={0} s2={2} />
+              <BracketMatch t1="Aurora Gaming" t2="Xtreme Gaming" s1={0} s2={2} />
+              <BracketMatch t1="Cloud9" t2="Team Falcons" s1={0} s2={2} />
+              <BracketMatch t1="Tundra Esports" t2="Xtreme Gaming" s1={2} s2={0} />
+              <BracketMatch t1="Team Falcons" t2="Tundra Esports" s1={0} s2={2} />
+              <BracketMatch t1="Gaimin Gladiators" t2="Tundra Esports" s1={2} s2={1} />
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Format */}
@@ -216,6 +270,39 @@ export default function TI2024Page() {
           <li key={i} style={{ marginBottom: 8 }}>{item}</li>
         ))}
       </ul>
+    </div>
+  );
+}
+
+// Helper component for bracket matches
+function BracketMatch({ t1, t2, s1, s2 }: { t1: string; t2: string; s1: number; s2: number }) {
+  const logos = {
+    'Team Liquid': '/Liquid.png',
+    'Gaimin Gladiators': '/GaiminGladiators.png',
+    'Tundra Esports': '/Tundra.png',
+    'Team Falcons': '/Team Falcons.png',
+    'Cloud9': '/Cloud9.png',
+    'Xtreme Gaming': '/Xtreme Gaming.png',
+    'BetBoom Team': '/Betboom.png',
+    'Aurora Gaming': '/Aurora Gaming.png',
+    'Nouns Esports': '/Nouns Esports.png',
+    '1w Team': '/1w Team.png',
+    'HEROIC': '/Heroic.png',
+    'Team Spirit': '/team Spirit.png',
+    'Talon Esports': '/Tundra.png',
+    'Team Zero': '/Team Zero.png',
+    'beastcoast': '/beastcoast.png',
+    'G2 x iG': '/G2 x iG.png',
+  };
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: '#2a1746', borderRadius: 8, padding: 6, marginBottom: 4 }}>
+      <Image src={logos[t1]} alt={t1} width={24} height={24} style={{ borderRadius: 4 }} />
+      <span style={{ color: '#fff', fontWeight: 600, minWidth: 90 }}>{t1}</span>
+      <span style={{ color: '#fff', fontWeight: 700 }}>{s1}</span>
+      <span style={{ color: '#aaa', fontWeight: 700, margin: '0 4px' }}>vs</span>
+      <span style={{ color: '#fff', fontWeight: 700 }}>{s2}</span>
+      <span style={{ color: '#fff', fontWeight: 600, minWidth: 90 }}>{t2}</span>
+      <Image src={logos[t2]} alt={t2} width={24} height={24} style={{ borderRadius: 4 }} />
     </div>
   );
 }
