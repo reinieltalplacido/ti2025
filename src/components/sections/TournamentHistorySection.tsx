@@ -245,7 +245,7 @@ export default function TournamentHistorySection() {
                   key={t.year}
                   onClick={() => {
                     if (t.year === 2024) {
-                      router.push("/components/sections/ti_champions/2024");
+                      router.push("/ti_champions/2024");
                     } else {
                       const el = document.getElementById(`ti-${t.year}`);
                       if (el) {
@@ -276,7 +276,7 @@ export default function TournamentHistorySection() {
                 className={`relative pl-10 md:pl-16`}
                 onClick={() => {
                   if (ti.year === 2024) {
-                    router.push("/components/sections/ti_champions/2024");
+                    router.push("/ti_champions/2024");
                   }
                 }}
                 style={ti.year === 2024 ? { cursor: 'pointer' } : {}}

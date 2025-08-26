@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import styles from './ti2024.module.css'; // (Optional: for custom styles, create this file if needed)
+// import styles from './ti2024.module.css'; // (Optional: for custom styles, create this file if needed)
 
 const teamLogos: Record<string, string> = {
   'Team Liquid': '/Liquid.png',
