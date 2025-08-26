@@ -1,6 +1,7 @@
 "use client";
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import FadeIn from "../ui/FadeIn";
 
@@ -164,6 +165,7 @@ export default function TournamentHistorySection() {
   ];
 
   const [showAll, setShowAll] = useState(false);
+  const router = useRouter();
 
   const visibleHistory = showAll ? tiHistory : tiHistory.slice(0, 3);
 
@@ -242,9 +244,13 @@ export default function TournamentHistorySection() {
                 <button
                   key={t.year}
                   onClick={() => {
-                    const el = document.getElementById(`ti-${t.year}`);
-                    if (el) {
-                      el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    if (t.year === 2024) {
+                      router.push("/components/sections/ti_champions/2024");
+                    } else {
+                      const el = document.getElementById(`ti-${t.year}`);
+                      if (el) {
+                        el.scrollIntoView({ behavior: "smooth", block: "start" });
+                      }
                     }
                   }}
                   className="px-4 py-2 rounded-full text-sm bg-purple-600/20 border border-purple-500/30 text-purple-200 hover:bg-purple-600/30"
@@ -268,6 +274,12 @@ export default function TournamentHistorySection() {
                 key={ti.year}
                 id={`ti-${ti.year}`}
                 className={`relative pl-10 md:pl-16`}
+                onClick={() => {
+                  if (ti.year === 2024) {
+                    router.push("/components/sections/ti_champions/2024");
+                  }
+                }}
+                style={ti.year === 2024 ? { cursor: 'pointer' } : {}}
               >
                 {/* Timeline Dot */}
                 <div className="absolute left-4 md:left-6 top-6 -translate-x-1/2 w-3 h-3 bg-purple-500 rounded-full ring-4 ring-purple-900/60 shadow z-10"></div>
