@@ -232,11 +232,11 @@ function InfoStatCard({ label, value }: { label: string; value: string }) {
 
 function TeamCard({ title, subtitle, logo }: { title: string; subtitle: string; logo: string }) {
   return (
-    <div className="flex flex-col items-center rounded-xl bg-[#231942] p-4 text-center ring-1 ring-white/5">
+    <div className="flex h-40 flex-col items-center justify-center gap-2 rounded-xl bg-[#231942] p-4 text-center ring-1 ring-white/5">
       <div className="h-16 w-16">
         <Image src={logo} alt={title} width={64} height={64} className="h-full w-full object-contain" />
       </div>
-      <div className="mt-2 text-base font-semibold">{title}</div>
+      <div className="text-base font-semibold leading-tight">{title}</div>
       <div className="text-sm text-white/60">{subtitle}</div>
     </div>
   );
@@ -324,9 +324,9 @@ function UpperBracket() {
           </div>
 
           {/* Round 2 - Semifinals */}
-          <div className="space-y-16">
+          <div className="mt-16">
             <div className="text-center text-sm font-semibold text-white/80 mb-4">Semifinals</div>
-            <div className="mt-16">
+            <div className="flex h-72 flex-col justify-between">
               <MatchCard 
                 team1="Team Liquid" 
                 team2="Cloud9" 
@@ -334,8 +334,6 @@ function UpperBracket() {
                 score2={0}
                 isWinner1={true}
               />
-            </div>
-            <div className="mt-16">
               <MatchCard 
                 team1="Tundra Esports" 
                 team2="Gaimin Gladiators" 
@@ -347,32 +345,28 @@ function UpperBracket() {
           </div>
 
           {/* Round 3 - Upper Final */}
-          <div className="flex flex-col justify-center">
+          <div className="flex h-72 flex-col justify-center mt-20">
             <div className="text-center text-sm font-semibold text-white/80 mb-4">Upper Final</div>
-            <div className="mt-20">
-              <MatchCard 
-                team1="Team Liquid" 
-                team2="Gaimin Gladiators" 
-                score1={2} 
-                score2={1}
-                isWinner1={true}
-              />
-            </div>
+            <MatchCard 
+              team1="Team Liquid" 
+              team2="Gaimin Gladiators" 
+              score1={2} 
+              score2={1}
+              isWinner1={true}
+            />
           </div>
 
           {/* Grand Final */}
-          <div className="flex flex-col justify-center">
+          <div className="flex h-72 flex-col justify-center mt-20">
             <div className="text-center text-sm font-semibold text-yellow-400 mb-4">Grand Final</div>
-            <div className="mt-20">
-              <MatchCard 
-                team1="Team Liquid" 
-                team2="Gaimin Gladiators" 
-                score1={3} 
-                score2={0}
-                isWinner1={true}
-                className="ring-2 ring-yellow-400/50"
-              />
-            </div>
+            <MatchCard 
+              team1="Team Liquid" 
+              team2="Gaimin Gladiators" 
+              score1={3} 
+              score2={0}
+              isWinner1={true}
+              className="ring-2 ring-yellow-400/50"
+            />
           </div>
         </div>
       </div>
@@ -404,48 +398,40 @@ function LowerBracket() {
           </div>
 
           {/* Round 3 */}
-          <div className="space-y-12">
+          <div>
             <div className="text-center text-sm font-semibold text-white/80 mb-4">Round 3</div>
-            <div className="mt-6">
+            <div className="flex h-72 flex-col justify-between">
               <MatchCard team1="BetBoom Team" team2="Team Falcons" score1={0} score2={2} isWinner2={true} />
-            </div>
-            <div className="mt-6">
               <MatchCard team1="Aurora Gaming" team2="Xtreme Gaming" score1={0} score2={2} isWinner2={true} />
             </div>
           </div>
 
           {/* Round 4 */}
-          <div className="space-y-12">
+          <div>
             <div className="text-center text-sm font-semibold text-white/80 mb-4">Round 4</div>
-            <div className="mt-6">
+            <div className="flex h-72 flex-col justify-between">
               <MatchCard team1="Cloud9" team2="Team Falcons" score1={0} score2={2} isWinner2={true} />
-            </div>
-            <div className="mt-6">
               <MatchCard team1="Tundra Esports" team2="Xtreme Gaming" score1={2} score2={0} isWinner1={true} />
             </div>
           </div>
 
           {/* Round 5 */}
-          <div className="flex flex-col justify-center">
+          <div className="flex h-72 flex-col justify-center">
             <div className="text-center text-sm font-semibold text-white/80 mb-4">Round 5</div>
-            <div className="mt-8">
-              <MatchCard team1="Team Falcons" team2="Tundra Esports" score1={0} score2={2} isWinner2={true} />
-            </div>
+            <MatchCard team1="Team Falcons" team2="Tundra Esports" score1={0} score2={2} isWinner2={true} />
           </div>
 
           {/* Lower Final */}
-          <div className="flex flex-col justify-center">
+          <div className="flex h-72 flex-col justify-center">
             <div className="text-center text-sm font-semibold text-orange-400 mb-4">Lower Final</div>
-            <div className="mt-8">
-              <MatchCard 
-                team1="Gaimin Gladiators" 
-                team2="Tundra Esports" 
-                score1={2} 
-                score2={1} 
-                isWinner1={true}
-                className="ring-2 ring-orange-400/50"
-              />
-            </div>
+            <MatchCard 
+              team1="Gaimin Gladiators" 
+              team2="Tundra Esports" 
+              score1={2} 
+              score2={1} 
+              isWinner1={true}
+              className="ring-2 ring-orange-400/50"
+            />
           </div>
         </div>
       </div>
