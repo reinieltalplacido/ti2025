@@ -102,7 +102,7 @@ const format = [
 
 export default function TI2024Page() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-8 text-white">
+    <div className="mx-auto max-w-7xl px-6 py-8 text-white">
       {/* Back Button */}
       <Link href="/" className="mb-6 inline-block text-white/80 transition hover:text-white">
         ← Back
@@ -188,92 +188,23 @@ export default function TI2024Page() {
 
       {/* Playoffs Bracket */}
       <h2 className="mt-8 mb-4 text-xl font-semibold">Playoffs</h2>
+      
       {/* Upper Bracket */}
-      <section className="mb-6 rounded-xl bg-[#231942] p-4 ring-1 ring-white/5">
-        <div className="mb-3 flex items-center justify-between">
-          <h3 className="text-lg font-semibold">Upper Bracket</h3>
+      <section className="mb-8 rounded-xl bg-[#231942] p-6 ring-1 ring-white/5">
+        <div className="mb-6 flex items-center justify-between">
+          <h3 className="text-lg font-semibold text-green-400">Upper Bracket</h3>
           <span className="text-sm text-white/60">Best of 3 (Grand Final Bo5)</span>
         </div>
-        <BracketSimple
-          columns={[
-            {
-              title: 'Quarterfinals',
-              matches: [
-                { t1: 'Xtreme Gaming', t2: 'Team Liquid', s1: 0, s2: 2 },
-                { t1: 'Cloud9', t2: 'Aurora Gaming', s1: 2, s2: 1 },
-                { t1: 'Team Falcons', t2: 'Tundra Esports', s1: 0, s2: 2 },
-                { t1: 'Nouns Esports', t2: 'Gaimin Gladiators', s1: 1, s2: 2 },
-              ],
-            },
-            {
-              title: 'Semifinals',
-              matches: [
-                { t1: 'Team Liquid', t2: 'Cloud9', s1: 2, s2: 0 },
-                { t1: 'Tundra Esports', t2: 'Gaimin Gladiators', s1: 0, s2: 2 },
-              ],
-            },
-            {
-              title: 'Upper Final',
-              matches: [{ t1: 'Team Liquid', t2: 'Gaimin Gladiators', s1: 2, s2: 1 }],
-            },
-            {
-              title: 'Grand Final',
-              matches: [{ t1: 'Team Liquid', t2: 'Gaimin Gladiators', s1: 3, s2: 0 }],
-            },
-          ]}
-        />
+        <UpperBracket />
       </section>
 
       {/* Lower Bracket */}
-      <section className="mb-8 rounded-xl bg-[#231942] p-4 ring-1 ring-white/5">
-        <div className="mb-3 flex items-center justify-between">
-          <h3 className="text-lg font-semibold">Lower Bracket</h3>
+      <section className="mb-8 rounded-xl bg-[#231942] p-6 ring-1 ring-white/5">
+        <div className="mb-6 flex items-center justify-between">
+          <h3 className="text-lg font-semibold text-orange-400">Lower Bracket</h3>
           <span className="text-sm text-white/60">Best of 3</span>
         </div>
-        <BracketSimple
-          columns={[
-            {
-              title: 'Round 1',
-              matches: [
-                { t1: 'Talon Esports', t2: 'BetBoom Team', s1: 1, s2: 2 },
-                { t1: '1w Team', t2: 'Team Zero', s1: 2, s2: 0 },
-                { t1: 'beastcoast', t2: 'HEROIC', s1: 1, s2: 2 },
-                { t1: 'Team Spirit', t2: 'G2 x iG', s1: 2, s2: 0 },
-              ],
-            },
-            {
-              title: 'Round 2',
-              matches: [
-                { t1: 'Nouns Esports', t2: 'BetBoom Team', s1: 0, s2: 2 },
-                { t1: 'Team Falcons', t2: '1w Team', s1: 2, s2: 0 },
-                { t1: 'Aurora Gaming', t2: 'HEROIC', s1: 2, s2: 1 },
-                { t1: 'Xtreme Gaming', t2: 'Team Spirit', s1: 2, s2: 1 },
-              ],
-            },
-            {
-              title: 'Round 3',
-              matches: [
-                { t1: 'BetBoom Team', t2: 'Team Falcons', s1: 0, s2: 2 },
-                { t1: 'Aurora Gaming', t2: 'Xtreme Gaming', s1: 0, s2: 2 },
-              ],
-            },
-            {
-              title: 'Round 4',
-              matches: [
-                { t1: 'Cloud9', t2: 'Team Falcons', s1: 0, s2: 2 },
-                { t1: 'Tundra Esports', t2: 'Xtreme Gaming', s1: 2, s2: 0 },
-              ],
-            },
-            {
-              title: 'Round 5',
-              matches: [{ t1: 'Team Falcons', t2: 'Tundra Esports', s1: 0, s2: 2 }],
-            },
-            {
-              title: 'Lower Final',
-              matches: [{ t1: 'Gaimin Gladiators', t2: 'Tundra Esports', s1: 2, s2: 1 }],
-            },
-          ]}
-        />
+        <LowerBracket />
       </section>
 
       {/* Format */}
@@ -307,96 +238,208 @@ function TeamCard({ title, subtitle, logo }: { title: string; subtitle: string; 
   );
 }
 
-function BracketMatch({ t1, t2, s1, s2 }: { t1: string; t2: string; s1: number; s2: number }) {
-  const logos = {
-    'Team Liquid': '/Liquid.png',
-    'Gaimin Gladiators': '/GaiminGladiators.png',
-    'Tundra Esports': '/Tundra.png',
-    'Team Falcons': '/Team Falcons.png',
-    'Cloud9': '/Cloud9.png',
-    'Xtreme Gaming': '/Xtreme Gaming.png',
-    'BetBoom Team': '/Betboom.png',
-    'Aurora Gaming': '/Aurora Gaming.png',
-    'Nouns Esports': '/Nouns Esports.png',
-    '1w Team': '/1w Team.png',
-    'HEROIC': '/Heroic.png',
-    'Team Spirit': '/team Spirit.png',
-    'Talon Esports': '/Tundra.png',
-    'Team Zero': '/Team Zero.png',
-    'beastcoast': '/beastcoast.png',
-    'G2 x iG': '/G2 x iG.png',
-  } as Record<string, string>;
-
-  const leftWins = s1 > s2;
-  const rightWins = s2 > s1;
+// Improved bracket components
+function MatchCard({ 
+  team1, 
+  team2, 
+  score1, 
+  score2, 
+  isWinner1, 
+  isWinner2, 
+  className = "" 
+}: { 
+  team1: string; 
+  team2: string; 
+  score1: number; 
+  score2: number; 
+  isWinner1?: boolean;
+  isWinner2?: boolean;
+  className?: string;
+}) {
   return (
-    <div className="flex h-14 items-center justify-between gap-2 rounded-md bg-black/30 px-3 py-2 ring-1 ring-white/10">
-      <div className="flex items-center gap-2">
-        <Image src={logos[t1]} alt={t1} width={22} height={22} className="rounded" />
-        <span className={`max-w-[120px] truncate text-sm md:max-w-[140px] ${leftWins ? 'font-semibold text-white' : 'text-white/70'}`}>{t1}</span>
+    <div className={`rounded-lg bg-black/40 ring-1 ring-white/10 ${className}`}>
+      <div className={`flex items-center justify-between px-3 py-2 ${isWinner1 ? 'bg-green-500/20 text-green-300' : 'text-white/70'}`}>
+        <div className="flex items-center gap-2">
+          <Image src={teamLogos[team1]} alt={team1} width={20} height={20} className="rounded" />
+          <span className="text-sm font-medium">{team1}</span>
+        </div>
+        <span className="text-sm font-bold">{score1}</span>
       </div>
-      <div className="flex items-center gap-4">
-        <span className={`min-w-[16px] text-center text-sm ${leftWins ? 'font-bold text-white' : 'text-white/60'}`}>{s1}</span>
-        <span className="text-white/40">—</span>
-        <span className={`min-w-[16px] text-center text-sm ${rightWins ? 'font-bold text-white' : 'text-white/60'}`}>{s2}</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <span className={`max-w-[120px] truncate text-right text-sm md:max-w-[140px] ${rightWins ? 'font-semibold text-white' : 'text-white/70'}`}>{t2}</span>
-        <Image src={logos[t2]} alt={t2} width={22} height={22} className="rounded" />
+      <div className="h-px bg-white/10" />
+      <div className={`flex items-center justify-between px-3 py-2 ${isWinner2 ? 'bg-green-500/20 text-green-300' : 'text-white/70'}`}>
+        <div className="flex items-center gap-2">
+          <Image src={teamLogos[team2]} alt={team2} width={20} height={20} className="rounded" />
+          <span className="text-sm font-medium">{team2}</span>
+        </div>
+        <span className="text-sm font-bold">{score2}</span>
       </div>
     </div>
   );
 }
 
-type BracketMatchData = { t1: string; t2: string; s1: number; s2: number };
-type BracketColumn = { title: string; matches: BracketMatchData[] };
-
-// Simple bracket with connector lines drawn via borders. Assumes each next round has ~half matches of previous.
-function BracketSimple({ columns }: { columns: BracketColumn[] }) {
+function UpperBracket() {
   return (
     <div className="overflow-x-auto">
-      <div className="flex min-w-[1000px] gap-10">
-        {columns.map((col, colIdx) => (
-          <BracketColumnSimple key={col.title} title={col.title} matches={col.matches} hasNext={colIdx < columns.length - 1} />
-        ))}
+      <div className="min-w-[1200px]">
+        <div className="grid grid-cols-4 gap-8">
+          {/* Round 1 - Quarterfinals */}
+          <div className="space-y-8">
+            <div className="text-center text-sm font-semibold text-white/80 mb-4">Quarterfinals</div>
+            <MatchCard 
+              team1="Xtreme Gaming" 
+              team2="Team Liquid" 
+              score1={0} 
+              score2={2}
+              isWinner2={true}
+            />
+            <MatchCard 
+              team1="Cloud9" 
+              team2="Aurora Gaming" 
+              score1={2} 
+              score2={1}
+              isWinner1={true}
+            />
+            <MatchCard 
+              team1="Team Falcons" 
+              team2="Tundra Esports" 
+              score1={0} 
+              score2={2}
+              isWinner2={true}
+            />
+            <MatchCard 
+              team1="Nouns Esports" 
+              team2="Gaimin Gladiators" 
+              score1={1} 
+              score2={2}
+              isWinner2={true}
+            />
+          </div>
+
+          {/* Round 2 - Semifinals */}
+          <div className="space-y-16">
+            <div className="text-center text-sm font-semibold text-white/80 mb-4">Semifinals</div>
+            <div className="mt-16">
+              <MatchCard 
+                team1="Team Liquid" 
+                team2="Cloud9" 
+                score1={2} 
+                score2={0}
+                isWinner1={true}
+              />
+            </div>
+            <div className="mt-16">
+              <MatchCard 
+                team1="Tundra Esports" 
+                team2="Gaimin Gladiators" 
+                score1={0} 
+                score2={2}
+                isWinner2={true}
+              />
+            </div>
+          </div>
+
+          {/* Round 3 - Upper Final */}
+          <div className="flex flex-col justify-center">
+            <div className="text-center text-sm font-semibold text-white/80 mb-4">Upper Final</div>
+            <div className="mt-20">
+              <MatchCard 
+                team1="Team Liquid" 
+                team2="Gaimin Gladiators" 
+                score1={2} 
+                score2={1}
+                isWinner1={true}
+              />
+            </div>
+          </div>
+
+          {/* Grand Final */}
+          <div className="flex flex-col justify-center">
+            <div className="text-center text-sm font-semibold text-yellow-400 mb-4">Grand Final</div>
+            <div className="mt-20">
+              <MatchCard 
+                team1="Team Liquid" 
+                team2="Gaimin Gladiators" 
+                score1={3} 
+                score2={0}
+                isWinner1={true}
+                className="ring-2 ring-yellow-400/50"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
-function BracketColumnSimple({ title, matches, hasNext }: { title: string; matches: BracketMatchData[]; hasNext: boolean }) {
-  // group matches per two to draw connectors
-  const groups: BracketMatchData[][] = [];
-  for (let i = 0; i < matches.length; i += 2) {
-    groups.push(matches.slice(i, i + 2));
-  }
+function LowerBracket() {
   return (
-    <div className="min-w-[280px]">
-      <div className="mb-3 inline-block rounded-md bg-black/40 px-3 py-1 text-center text-xs font-semibold uppercase tracking-wide text-white/80">
-        {title}
-      </div>
-      <div className="space-y-12">
-        {groups.map((g, gi) => (
-          <div key={`${title}-g-${gi}`} className="relative pr-10">
-            <div className="space-y-4">
-              {g.map((m, mi) => (
-                <div key={`${title}-g-${gi}-m-${mi}`} className="relative">
-                  <BracketMatch {...m} />
-                  {/* short line to the right */}
-                  {hasNext && <div className="absolute right-0 top-1/2 h-0.5 w-8 -translate-y-1/2 bg-white/25" />}
-                </div>
-              ))}
-            </div>
-            {hasNext && g.length === 2 && (
-              <>
-                {/* vertical connector joining the two matches */}
-                <div className="absolute right-0 top-[28px] h-[72px] w-0.5 bg-white/25" />
-                {/* bridge to next column center */}
-                <div className="absolute right-0 top-[64px] h-0.5 w-8 bg-white/25" />
-              </>
-            )}
+    <div className="overflow-x-auto">
+      <div className="min-w-[1400px]">
+        <div className="grid grid-cols-6 gap-6">
+          {/* Round 1 */}
+          <div className="space-y-6">
+            <div className="text-center text-sm font-semibold text-white/80 mb-4">Round 1</div>
+            <MatchCard team1="Talon Esports" team2="BetBoom Team" score1={1} score2={2} isWinner2={true} />
+            <MatchCard team1="1w Team" team2="Team Zero" score1={2} score2={0} isWinner1={true} />
+            <MatchCard team1="beastcoast" team2="HEROIC" score1={1} score2={2} isWinner2={true} />
+            <MatchCard team1="Team Spirit" team2="G2 x iG" score1={2} score2={0} isWinner1={true} />
           </div>
-        ))}
+
+          {/* Round 2 */}
+          <div className="space-y-6">
+            <div className="text-center text-sm font-semibold text-white/80 mb-4">Round 2</div>
+            <MatchCard team1="Nouns Esports" team2="BetBoom Team" score1={0} score2={2} isWinner2={true} />
+            <MatchCard team1="Team Falcons" team2="1w Team" score1={2} score2={0} isWinner1={true} />
+            <MatchCard team1="Aurora Gaming" team2="HEROIC" score1={2} score2={1} isWinner1={true} />
+            <MatchCard team1="Xtreme Gaming" team2="Team Spirit" score1={2} score2={1} isWinner1={true} />
+          </div>
+
+          {/* Round 3 */}
+          <div className="space-y-12">
+            <div className="text-center text-sm font-semibold text-white/80 mb-4">Round 3</div>
+            <div className="mt-6">
+              <MatchCard team1="BetBoom Team" team2="Team Falcons" score1={0} score2={2} isWinner2={true} />
+            </div>
+            <div className="mt-6">
+              <MatchCard team1="Aurora Gaming" team2="Xtreme Gaming" score1={0} score2={2} isWinner2={true} />
+            </div>
+          </div>
+
+          {/* Round 4 */}
+          <div className="space-y-12">
+            <div className="text-center text-sm font-semibold text-white/80 mb-4">Round 4</div>
+            <div className="mt-6">
+              <MatchCard team1="Cloud9" team2="Team Falcons" score1={0} score2={2} isWinner2={true} />
+            </div>
+            <div className="mt-6">
+              <MatchCard team1="Tundra Esports" team2="Xtreme Gaming" score1={2} score2={0} isWinner1={true} />
+            </div>
+          </div>
+
+          {/* Round 5 */}
+          <div className="flex flex-col justify-center">
+            <div className="text-center text-sm font-semibold text-white/80 mb-4">Round 5</div>
+            <div className="mt-8">
+              <MatchCard team1="Team Falcons" team2="Tundra Esports" score1={0} score2={2} isWinner2={true} />
+            </div>
+          </div>
+
+          {/* Lower Final */}
+          <div className="flex flex-col justify-center">
+            <div className="text-center text-sm font-semibold text-orange-400 mb-4">Lower Final</div>
+            <div className="mt-8">
+              <MatchCard 
+                team1="Gaimin Gladiators" 
+                team2="Tundra Esports" 
+                score1={2} 
+                score2={1} 
+                isWinner1={true}
+                className="ring-2 ring-orange-400/50"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
