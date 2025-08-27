@@ -330,10 +330,10 @@ function BracketMatch({ t1, t2, s1, s2 }: { t1: string; t2: string; s1: number; 
   const leftWins = s1 > s2;
   const rightWins = s2 > s1;
   return (
-    <div className="mb-1.5 flex h-14 items-center justify-between gap-2 rounded-md bg-black/30 px-3 py-2 ring-1 ring-white/10">
+    <div className="flex h-14 items-center justify-between gap-2 rounded-md bg-black/30 px-3 py-2 ring-1 ring-white/10">
       <div className="flex items-center gap-2">
         <Image src={logos[t1]} alt={t1} width={22} height={22} className="rounded" />
-        <span className={`truncate text-sm ${leftWins ? 'font-semibold text-white' : 'text-white/70'}`}>{t1}</span>
+        <span className={`max-w-[120px] truncate text-sm md:max-w-[140px] ${leftWins ? 'font-semibold text-white' : 'text-white/70'}`}>{t1}</span>
       </div>
       <div className="flex items-center gap-4">
         <span className={`min-w-[16px] text-center text-sm ${leftWins ? 'font-bold text-white' : 'text-white/60'}`}>{s1}</span>
@@ -341,7 +341,7 @@ function BracketMatch({ t1, t2, s1, s2 }: { t1: string; t2: string; s1: number; 
         <span className={`min-w-[16px] text-center text-sm ${rightWins ? 'font-bold text-white' : 'text-white/60'}`}>{s2}</span>
       </div>
       <div className="flex items-center gap-2">
-        <span className={`truncate text-right text-sm ${rightWins ? 'font-semibold text-white' : 'text-white/70'}`}>{t2}</span>
+        <span className={`max-w-[120px] truncate text-right text-sm md:max-w-[140px] ${rightWins ? 'font-semibold text-white' : 'text-white/70'}`}>{t2}</span>
         <Image src={logos[t2]} alt={t2} width={22} height={22} className="rounded" />
       </div>
     </div>
@@ -371,30 +371,30 @@ function BracketColumnSimple({ title, matches, hasNext }: { title: string; match
     groups.push(matches.slice(i, i + 2));
   }
   return (
-    <div className="min-w-[260px]">
+    <div className="min-w-[280px]">
       <div className="mb-3 inline-block rounded-md bg-black/40 px-3 py-1 text-center text-xs font-semibold uppercase tracking-wide text-white/80">
         {title}
       </div>
-      <div className="space-y-10">
+      <div className="space-y-12">
         {groups.map((g, gi) => (
-          <div key={`${title}-g-${gi}`} className="relative pr-8">
-            {g.map((m, mi) => (
-              <div key={`${title}-g-${gi}-m-${mi}`} className="relative">
-                <BracketMatch {...m} />
-                {/* short line to the right */}
-                {hasNext && <div className="absolute right-0 top-1/2 h-0.5 w-6 -translate-y-1/2 bg-white/25" />}
-              </div>
-            ))}
+          <div key={`${title}-g-${gi}`} className="relative pr-10">
+            <div className="space-y-4">
+              {g.map((m, mi) => (
+                <div key={`${title}-g-${gi}-m-${mi}`} className="relative">
+                  <BracketMatch {...m} />
+                  {/* short line to the right */}
+                  {hasNext && <div className="absolute right-0 top-1/2 h-0.5 w-8 -translate-y-1/2 bg-white/25" />}
+                </div>
+              ))}
+            </div>
             {hasNext && g.length === 2 && (
               <>
                 {/* vertical connector joining the two matches */}
-                <div className="absolute right-0 top-[28px] h-[44px] w-0.5 bg-white/25" />
+                <div className="absolute right-0 top-[28px] h-[72px] w-0.5 bg-white/25" />
                 {/* bridge to next column center */}
-                <div className="absolute right-0 top-[50px] h-0.5 w-6 bg-white/25" />
+                <div className="absolute right-0 top-[64px] h-0.5 w-8 bg-white/25" />
               </>
             )}
-            {/* spacer between pair */}
-            {g.length === 2 && <div className="h-6" />}
           </div>
         ))}
       </div>
