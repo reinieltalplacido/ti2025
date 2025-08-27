@@ -11,14 +11,14 @@ const teamLogos: Record<string, string> = {
   'Xtreme Gaming': '/Xtreme Gaming.png',
   'BetBoom Team': '/Betboom.png',
   'Aurora Gaming': '/Aurora Gaming.png',
-  'Nouns Esports': '/Nouns Esports.png',
-  '1w Team': '/1w Team.png',
+  'Nouns Esports': '/Nouns.png',
+  '1w Team': '/1W.png',
   'HEROIC': '/Heroic.png',
   'Team Spirit': '/team Spirit.png',
-  'Talon Esports': '/Tundra.png',
+  'Talon Esports': '/Talon.png',
   'Team Zero': '/Team Zero.png',
   'beastcoast': '/beastcoast.png',
-  'G2 x iG': '/G2 x iG.png',
+  'G2 x iG': '/G2Ig.png',
 };
 
 const podium = [
@@ -140,7 +140,9 @@ export default function TI2024Page() {
             <div className="text-lg font-bold">
               {place === 1 ? '🥇' : place === 2 ? '🥈' : place === 3 ? '🥉' : '🏅'} {place}st
             </div>
-            <Image src={teamLogos[team]} alt={team} width={56} height={56} className="mx-auto my-3" />
+            <div className="mx-auto my-3 h-14 w-14">
+              <Image src={teamLogos[team]} alt={team} width={56} height={56} className="h-full w-full object-contain" />
+            </div>
             <div className="text-lg font-semibold">{team}</div>
             <div className="text-sm text-white/60">{prize} ({percent})</div>
           </div>
@@ -170,7 +172,7 @@ export default function TI2024Page() {
             <ul className="space-y-2">
               {group.standings.map(({ team, record, points }) => (
                 <li key={team} className="flex items-center gap-2">
-                  <Image src={teamLogos[team]} alt={team} width={24} height={24} />
+                  <Image src={teamLogos[team]} alt={team} width={team === 'Gaimin Gladiators' ? 15 : 24} height={team === 'Gaimin Gladiators' ? 20 : 24} />
                   <span className="flex-1">{team}</span>
                   <span className="text-sm text-white/60">{record} ({points})</span>
                 </li>
@@ -231,7 +233,9 @@ function InfoStatCard({ label, value }: { label: string; value: string }) {
 function TeamCard({ title, subtitle, logo }: { title: string; subtitle: string; logo: string }) {
   return (
     <div className="flex flex-col items-center rounded-xl bg-[#231942] p-4 text-center ring-1 ring-white/5">
-      <Image src={logo} alt={title} width={64} height={64} className="rounded-md" />
+      <div className="h-16 w-16">
+        <Image src={logo} alt={title} width={64} height={64} className="h-full w-full object-contain" />
+      </div>
       <div className="mt-2 text-base font-semibold">{title}</div>
       <div className="text-sm text-white/60">{subtitle}</div>
     </div>
@@ -260,7 +264,9 @@ function MatchCard({
     <div className={`rounded-lg bg-black/40 ring-1 ring-white/10 ${className}`}>
       <div className={`flex items-center justify-between px-3 py-2 ${isWinner1 ? 'bg-green-500/20 text-green-300' : 'text-white/70'}`}>
         <div className="flex items-center gap-2">
-          <Image src={teamLogos[team1]} alt={team1} width={20} height={20} className="rounded" />
+          <div className="h-5 w-5">
+            <Image src={teamLogos[team1]} alt={team1} width={20} height={20} className="h-full w-full object-contain" />
+          </div>
           <span className="text-sm font-medium">{team1}</span>
         </div>
         <span className="text-sm font-bold">{score1}</span>
@@ -268,7 +274,9 @@ function MatchCard({
       <div className="h-px bg-white/10" />
       <div className={`flex items-center justify-between px-3 py-2 ${isWinner2 ? 'bg-green-500/20 text-green-300' : 'text-white/70'}`}>
         <div className="flex items-center gap-2">
-          <Image src={teamLogos[team2]} alt={team2} width={20} height={20} className="rounded" />
+          <div className="h-5 w-5">
+            <Image src={teamLogos[team2]} alt={team2} width={20} height={20} className="h-full w-full object-contain" />
+          </div>
           <span className="text-sm font-medium">{team2}</span>
         </div>
         <span className="text-sm font-bold">{score2}</span>
