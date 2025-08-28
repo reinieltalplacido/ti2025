@@ -416,13 +416,13 @@ function LowerBracket() {
           </div>
 
           {/* Round 5 */}
-          <div className="flex h-72 flex-col justify-center" classname="mt-15">
+          <div className="flex h-72 flex-col justify-start">
             <div className="text-center text-sm font-semibold text-white/80 mb-4">Round 5</div>
-            <MatchCard team1="Team Falcons" team2="Tundra Esports" score1={0} score2={2} isWinner2={true} />
+            <MatchCard team1="Team Falcons" team2="Tundra Esports" score1={0} score2={2} isWinner2={true} className="mt-37" />
           </div>
 
           {/* Lower Final */}
-          <div className="flex h-72 flex-col justify-center">
+          <div className="flex h-72 flex-col justify-start">
             <div className="text-center text-sm font-semibold text-orange-400 mb-4">Lower Final</div>
             <MatchCard 
               team1="Gaimin Gladiators" 
@@ -430,7 +430,7 @@ function LowerBracket() {
               score1={2} 
               score2={1} 
               isWinner1={true}
-              className="ring-2 ring-orange-400/50"
+              className="ring-2 ring-orange-400/50 mt-37"
             />
           </div>
         </div>
