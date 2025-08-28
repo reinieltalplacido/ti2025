@@ -7,6 +7,7 @@ export default function TeamsSection() {
     { id: 2, name: "Parivision", logo: "/Parivision.png", status: "Invited" },
     { id: 3, name: "BetBoom Team", logo: "/Betboom.png", status: "Invited" },
     { id: 4, name: "Team Tidebound", logo: "/Team TIdebound.png", status: "Invited" },
+    { id: 8, name: "Yakult Brothers", logo: "/Yakult_Brothers.png", status: "Invited" },
     { id: 5, name: "Team Spirit", logo: "/team Spirit.png", status: "Invited" },
     { id: 6, name: "Team Falcons", logo: "/Team Falcons.png", status: "Invited" },
     { id: 7, name: "Tundra Esports", logo: "/Tundra.png", status: "Invited" },
