@@ -401,8 +401,8 @@ function LowerBracket() {
           <div>
             <div className="text-center text-sm font-semibold text-white/80 mb-4">Round 3</div>
             <div className="flex h-72 flex-col justify-between">
-              <MatchCard team1="BetBoom Team" team2="Team Falcons" score1={0} score2={2} isWinner2={true} />
-              <MatchCard team1="Aurora Gaming" team2="Xtreme Gaming" score1={0} score2={2} isWinner2={true} />
+              <MatchCard team1="BetBoom Team" team2="Team Falcons" score1={0} score2={2} isWinner2={true} className="mt-15" />
+              <MatchCard team1="Aurora Gaming" team2="Xtreme Gaming" score1={0} score2={2} isWinner2={true} className="mt-26"/>
             </div>
           </div>
 
@@ -410,13 +410,13 @@ function LowerBracket() {
           <div>
             <div className="text-center text-sm font-semibold text-white/80 mb-4">Round 4</div>
             <div className="flex h-72 flex-col justify-between">
-              <MatchCard team1="Cloud9" team2="Team Falcons" score1={0} score2={2} isWinner2={true} />
-              <MatchCard team1="Tundra Esports" team2="Xtreme Gaming" score1={2} score2={0} isWinner1={true} />
+              <MatchCard team1="Cloud9" team2="Team Falcons" score1={0} score2={2} isWinner2={true} className="mt-15"  />
+              <MatchCard team1="Tundra Esports" team2="Xtreme Gaming" score1={2} score2={0} isWinner1={true} className="mt-26" />
             </div>
           </div>
 
           {/* Round 5 */}
-          <div className="flex h-72 flex-col justify-center">
+          <div className="flex h-72 flex-col justify-center" classname="mt-15">
             <div className="text-center text-sm font-semibold text-white/80 mb-4">Round 5</div>
             <MatchCard team1="Team Falcons" team2="Tundra Esports" score1={0} score2={2} isWinner2={true} />
           </div>
