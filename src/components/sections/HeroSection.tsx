@@ -18,11 +18,11 @@ export default function HeroSection() {
               key={i}
               className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 60}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${1 + Math.random() * 2}s`,
-                opacity: 0.3 + Math.random() * 0.7
+                left: `${(i * 7.3) % 100}%`,
+                top: `${(i * 3.7) % 60}%`,
+                animationDelay: `${(i % 3)}s`,
+                animationDuration: `${1 + (i % 2)}s`,
+                opacity: 0.3 + ((i % 7) / 10)
               }}
             />
           ))}
@@ -37,7 +37,7 @@ export default function HeroSection() {
               style={{
                 left: `${20 + i * 10}%`,
                 top: `${10 + i * 5}%`,
-                transform: `rotate(${Math.random() * 45}deg)`,
+                transform: `rotate(${(i * 5.625) % 45}deg)`,
                 opacity: 0.4
               }}
             />
@@ -45,7 +45,7 @@ export default function HeroSection() {
         </div>
         
         {/* TI2025 Top Aegis Emblem - blended into background */}
-        <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-40 h-40">
+        <div className="absolute top-45 left-1/2 transform -translate-x-1/2 w-40 h-40">
           <Image
             src="/TI2025TopAegis_410x.png"
             alt="TI2025 Top Aegis Trophy"
