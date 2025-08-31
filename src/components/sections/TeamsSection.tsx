@@ -13,29 +13,7 @@ export default function TeamsSection() {
     { id: 7, name: "Tundra Esports", logo: "/Tundra.png", status: "Invited" },
   ];
 
-  // Regional Qualifiers teams
-  const regionalQualifiers = [
-    { region: "Western Europe", teams: [
-      { id: 8, name: "Natus Vincere", logo: "/Natus Vincere.png", region: "Western Europe" },
-      { id: 9, name: "Nigma Galaxy", logo: "/Nigma Galaxy.png", region: "Western Europe" },
-    ]},
-    { region: "Eastern Europe", teams: [
-      { id: 10, name: "Aurora Gaming", logo: "/Aurora Gaming.png", region: "Eastern Europe" },
-    ]},
-    { region: "China", teams: [
-      { id: 11, name: "Xtreme Gaming", logo: "/Xtreme Gaming.png", region: "China" },
-    ]},
-    { region: "Southeast Asia", teams: [
-      { id: 12, name: "Team Nemesis", logo: "/Team Nemesis.png", region: "Southeast Asia" },
-      { id: 13, name: "BOOM Esports", logo: "/Boom Esports.png", region: "Southeast Asia" },
-    ]},
-    { region: "North America", teams: [
-      { id: 14, name: "Wildcard", logo: "/WIldcard.png", region: "North America" },
-    ]},
-    { region: "South America", teams: [
-      { id: 15, name: "HEROIC", logo: "/Heroic.png", region: "South America" },
-    ]},
-  ];
+
 
   return (
     <section className="relative py-20 bg-gradient-to-b from-[#000000] via-[#111827] via-60% to-black overflow-hidden">

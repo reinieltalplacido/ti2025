@@ -86,7 +86,7 @@ export default function HeroSection() {
         {/* Description */}
         <FadeIn className="mb-16 max-w-3xl mx-auto">
           <p className="text-xl text-gray-300 leading-relaxed">
-            The ultimate Dota 2 championship returns with the world's elite teams competing for glory and the largest prize pool in esports history.
+            The ultimate Dota 2 championship returns with the world&apos;s elite teams competing for glory and the largest prize pool in esports history.
           </p>
         </FadeIn>
 

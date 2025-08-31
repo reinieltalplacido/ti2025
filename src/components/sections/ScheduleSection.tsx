@@ -46,7 +46,7 @@ export default function ScheduleSection() {
                 </div>
                 
                 <h4 className="text-2xl font-bold text-white mb-2">{stage.name}</h4>
-                <p className="text-lg text-purple-300 mb-3 italic">"{stage.subtitle}"</p>
+                <p className="text-lg text-purple-300 mb-3 italic">&ldquo;{stage.subtitle}&rdquo;</p>
                 <p className="text-xl text-white font-semibold mb-4">{stage.date}</p>
                 <span className="inline-block bg-green-600/40 text-green-200 text-sm font-medium px-4 py-2 rounded-full border border-green-500/30">
                   {stage.status}
