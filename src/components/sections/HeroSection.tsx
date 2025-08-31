@@ -94,7 +94,7 @@ export default function HeroSection() {
         <FadeIn className="mb-16">
           <div className="text-lg text-white font-light mb-2">Current Prize Pool</div>
           <div className="text-6xl md:text-7xl font-bold text-white-400">
-          $2,034,420
+          $2,308,107
           </div>
         </FadeIn>
 
