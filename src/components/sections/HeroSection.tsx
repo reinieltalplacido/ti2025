@@ -75,10 +75,10 @@ export default function HeroSection() {
 
         {/* Main Title */}
         <FadeIn className="mb-12">
-          <h1 className="text-10xl md:text-8xl font-light text-purple-200 mb-6 tracking-wide">
+          <h1 className="text-10xl md:text-8xl font-bold text-purple-200 mb-6 tracking-wide">
             The International
           </h1>
-          <h2 className="text-5xl md:text-7xl font-light text-purple-200 tracking-wide">
+          <h2 className="text-5xl md:text-7xl font-bold text-purple-200 tracking-wide">
             2025
           </h2>
         </FadeIn>
@@ -92,8 +92,8 @@ export default function HeroSection() {
 
         {/* Prize Pool */}
         <FadeIn className="mb-16">
-          <div className="text-lg text-white font-light mb-2">Current Prize Pool</div>
-          <div className="text-6xl md:text-7xl font-bold text-white-400">
+          <div className="text-lg text-gray-300 font-light mb-2">Current Prize Pool</div>
+          <div className="text-6xl md:text-7xl font-bold text-white">
           $2,308,107
           </div>
         </FadeIn>
