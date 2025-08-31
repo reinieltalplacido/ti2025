@@ -7,17 +7,10 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-2">
             <h3 className="text-2xl font-bold text-white mb-4">The International 2025</h3>
             <p className="text-gray-300 mb-6 max-w-md">
-              The biggest Dota 2 tournament of the year. 16 teams, $2,004,464 prize pool, 
+              The biggest Dota 2 tournament of the year. 16 teams, $2,308,107 prize pool, 
               and the ultimate battle for the Aegis of Champions.
             </p>
-            <div className="flex space-x-4">
-              <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full transition-colors duration-300">
-                Get Tickets
-              </button>
-              <button className="border border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white px-6 py-2 rounded-full transition-colors duration-300">
-                Watch Live
-              </button>
-            </div>
+           
           </div>
 
           {/* Quick Links */}
@@ -38,7 +31,7 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-300">
               <li>📍 Barclays Arena, Hamburg</li>
               <li>📅 September 4-15, 2025</li>
-              <li>💰 $2,004,464 Prize Pool</li>
+              <li>💰 $2,308,107 Prize Pool</li>
               <li>🏆 16 Teams Competing</li>
             </ul>
           </div>

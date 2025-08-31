@@ -105,7 +105,7 @@ export default function HeroSection() {
         </FadeIn>
 
         {/* Event Details */}
-        <FadeIn className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 max-w-3xl mx-auto">
+        <FadeIn className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 max-w-2xl mx-auto">
           <div className="flex flex-col items-center">
             <div className="w-6 h-6 mb-3">
               <svg className="w-full h-full text-gray-400" fill="currentColor" viewBox="0 0 20 20">
@@ -123,25 +123,6 @@ export default function HeroSection() {
             </div>
             <div className="text-white font-light">Hamburg, Germany</div>
           </div>
-          
-          <div className="flex flex-col items-center">
-            <div className="w-6 h-6 mb-3">
-              <svg className="w-full h-full text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <div className="text-white font-light">Doors Open: 10:00 AM PDT</div>
-          </div>
-        </FadeIn>
-
-        {/* Call to Action Buttons */}
-        <FadeIn className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <button className="bg-purple-600 hover:bg-purple-700 text-white font-medium py-4 px-8 rounded-none text-lg transition-all duration-300 hover:scale-105 min-w-[160px]">
-            Buy Tickets
-          </button>
-          <button className="bg-transparent border border-white text-white font-medium py-4 px-8 rounded-none text-lg transition-all duration-300 hover:bg-white hover:text-black min-w-[160px]">
-            Watch Trailer
-          </button>
         </FadeIn>
       </div>
     </section>

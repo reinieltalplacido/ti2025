@@ -14,7 +14,7 @@ export default function TournamentHistorySection() {
       teamsCount: 16,
       winner: "TBD",
       runnerUp: "TBD",
-      prizePool: "$2,028,783",
+      prizePool: "$2,308,107",
       location: "Hamburg, Germany",
       champion: "",
       logo: "🏆"
