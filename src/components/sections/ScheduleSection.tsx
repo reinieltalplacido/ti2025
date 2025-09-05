@@ -247,6 +247,20 @@ export default function ScheduleSection() {
               </div>
             </div>
           </div>
+          {/* Watch on YouTube (under the list, not inside) */}
+          <div className="max-w-7xl mx-auto mt-8 flex justify-center">
+            <a
+              href="https://www.youtube.com/@dota2"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-red-600 hover:bg-red-500 text-white font-semibold shadow-lg shadow-red-900/20"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                <path d="M23.498 6.186a3.008 3.008 0 0 0-2.117-2.129C19.663 3.5 12 3.5 12 3.5s-7.663 0-9.381.557A3.008 3.008 0 0 0 .502 6.186 31.35 31.35 0 0 0 0 12a31.35 31.35 0 0 0 .502 5.814 3.008 3.008 0 0 0 2.117 2.129C4.337 20.5 12 20.5 12 20.5s7.663 0 9.381-.557a3.008 3.008 0 0 0 2.117-2.129A31.35 31.35 0 0 0 24 12a31.35 31.35 0 0 0-.502-5.814ZM9.75 15.5v-7l6 3.5-6 3.5Z" />
+              </svg>
+              <span>You can watch here at YouTube</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
