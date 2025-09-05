@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 export default function TeamsSection() {
-  // Direct Invites teams
+ 
   const directInvites = [
     { id: 1, name: "Team Liquid", logo: "/Liquid.png", status: "Invited" },
     { id: 2, name: "Parivision", logo: "/Parivision.png", status: "Invited" },
@@ -23,7 +23,7 @@ export default function TeamsSection() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4">
-        {/* Section Header */}
+       
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
             The Teams
@@ -36,7 +36,7 @@ export default function TeamsSection() {
           </div>
         </div>
 
-        {/* Direct Invites Section */}
+     
         <div className="mb-20">
           <div className="mb-8">
             <h3 className="text-3xl font-bold text-white">Direct Invites</h3>
