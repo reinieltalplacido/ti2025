@@ -20,7 +20,7 @@ export default function CountdownTimer() {
   const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    const targetDate = new Date('2025-09-04T00:00:00Z'); // September 4th, 2025
+    const targetDate = new Date('2025-09-04T08:00:00Z'); // September 4th, 2025 - 4:00 PM Asia/Manila (UTC+8)
 
     let timer: ReturnType<typeof setInterval> | undefined;
 

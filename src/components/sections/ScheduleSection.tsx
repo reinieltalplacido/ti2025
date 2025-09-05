@@ -8,11 +8,12 @@ interface TeamRef {
 }
 
 interface LiveMatch {
-  startsIn: string;
-  score?: string;
   a: TeamRef;
   b: TeamRef;
   bo: string;
+  slotHourLocal: number; // 16 for 4 PM, 19 for 7 PM (Asia/Manila)
+  score?: string;
+  startsIn?: string; // SSR placeholder to avoid hydration mismatch
 }
 
 export default function ScheduleSection() {
@@ -45,26 +46,45 @@ export default function ScheduleSection() {
   };
 
   const liveMatches: LiveMatch[] = [
-    { startsIn: '3h 53m 46s',  a: { name: 'XG', logo: '/Xtreme Gaming.png' }, b: { name: 'Falcons', logo: '/Team Falcons.png' }, bo: 'Bo3' },
-    { startsIn: '3h 53m 46s',  a: { name: 'TSpirit', logo: '/team Spirit.png' }, b: { name: 'Tundra', logo: '/Tundra.png' }, bo: 'Bo3' },
-    { startsIn: '3h 53m 46s',  a: { name: 'Aurora', logo: '/Aurora Gaming.png' }, b: { name: 'YkBros', logo: '/Yakult_Brothers.png' }, bo: 'Bo3' },
-    { startsIn: '3h 53m 46s',  a: { name: 'Nem', logo: '/Team Nemesis.png' }, b: { name: 'Wildcard', logo: '/WIldcard.png' }, bo: 'Bo3' },
-    { startsIn: '6h 53m 46s',  a: { name: 'PARI', logo: '/Parivision.png' }, b: { name: 'Tidebd', logo: '/Team TIdebound.png' }, bo: 'Bo3' },
-    { startsIn: '6h 53m 46s',  a: { name: 'NGX', logo: '/Nigma Galaxy.png' }, b: { name: 'Liquid', logo: '/Liquid.png' }, bo: 'Bo3' },
-    { startsIn: '6h 53m 46s',  a: { name: 'NAVI', logo: '/Natus Vincere.png' }, b: { name: 'BB', logo: '/Betboom.png' }, bo: 'Bo3' },
-    { startsIn: '6h 53m 46s',  a: { name: 'BOOM', logo: '/Boom Esports.png' }, b: { name: 'HEROIC', logo: '/Heroic.png' }, bo: 'Bo3' }
+    { a: { name: 'XG', logo: '/Xtreme Gaming.png' }, b: { name: 'Falcons', logo: '/Team Falcons.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
+    { a: { name: 'TSpirit', logo: '/team Spirit.png' }, b: { name: 'Tundra', logo: '/Tundra.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
+    { a: { name: 'Aurora', logo: '/Aurora Gaming.png' }, b: { name: 'YkBros', logo: '/Yakult_Brothers.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
+    { a: { name: 'Nem', logo: '/Team Nemesis.png' }, b: { name: 'Wildcard', logo: '/WIldcard.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
+    { a: { name: 'PARI', logo: '/Parivision.png' }, b: { name: 'Tidebd', logo: '/Team TIdebound.png' }, bo: 'Bo3', slotHourLocal: 19, startsIn: '—' },
+    { a: { name: 'NGX', logo: '/Nigma Galaxy.png' }, b: { name: 'Liquid', logo: '/Liquid.png' }, bo: 'Bo3', slotHourLocal: 19, startsIn: '—' },
+    { a: { name: 'NAVI', logo: '/Natus Vincere.png' }, b: { name: 'BB', logo: '/Betboom.png' }, bo: 'Bo3', slotHourLocal: 19, startsIn: '—' },
+    { a: { name: 'BOOM', logo: '/Boom Esports.png' }, b: { name: 'HEROIC', logo: '/Heroic.png' }, bo: 'Bo3', slotHourLocal: 19, startsIn: '—' }
   ];
 
-  // Parse and run per-match countdowns based on the initial startsIn string (e.g., "3h 53m 46s")
-  const parseDurationToSeconds = (text: string): number => {
-    if (!text) return 0;
-    const hoursMatch = text.match(/(\d+)\s*h/);
-    const minutesMatch = text.match(/(\d+)\s*m/);
-    const secondsMatch = text.match(/(\d+)\s*s/);
-    const hours = hoursMatch ? parseInt(hoursMatch[1], 10) : 0;
-    const minutes = minutesMatch ? parseInt(minutesMatch[1], 10) : 0;
-    const seconds = secondsMatch ? parseInt(secondsMatch[1], 10) : 0;
-    return hours * 3600 + minutes * 60 + seconds;
+  // Compute countdowns to fixed Manila slots: 4 PM and 7 PM (Asia/Manila is UTC+8, no DST)
+  const MANILA_UTC_OFFSET_HOURS = 8;
+  const LIVE_WINDOW_SECONDS = 3 * 60 * 60; // show "Live" for 3 hours after start
+
+  const secondsUntilManilaSlot = (hourLocal: number): number => {
+    const nowMs = Date.now();
+    const manilaNow = new Date(nowMs + MANILA_UTC_OFFSET_HOURS * 3600 * 1000);
+    const y = manilaNow.getUTCFullYear();
+    const m = manilaNow.getUTCMonth();
+    const d = manilaNow.getUTCDate();
+
+    const todaySlotUtcMs = Date.UTC(y, m, d, hourLocal - MANILA_UTC_OFFSET_HOURS, 0, 0);
+    if (nowMs <= todaySlotUtcMs) {
+      return Math.floor((todaySlotUtcMs - nowMs) / 1000);
+    }
+
+    // If within live window after start, mark as Live
+    const sinceStartSeconds = Math.floor((nowMs - todaySlotUtcMs) / 1000);
+    if (sinceStartSeconds <= LIVE_WINDOW_SECONDS) {
+      return 0;
+    }
+
+    // Otherwise, count down to tomorrow's same slot
+    const tomorrowManila = new Date(Date.UTC(y, m, d) + 24 * 60 * 60 * 1000);
+    const y2 = tomorrowManila.getUTCFullYear();
+    const m2 = tomorrowManila.getUTCMonth();
+    const d2 = tomorrowManila.getUTCDate();
+    const nextSlotUtcMs = Date.UTC(y2, m2, d2, hourLocal - MANILA_UTC_OFFSET_HOURS, 0, 0);
+    return Math.max(0, Math.floor((nextSlotUtcMs - nowMs) / 1000));
   };
 
   const formatSeconds = (totalSeconds: number): string => {
@@ -74,16 +94,20 @@ export default function ScheduleSection() {
     return `${hours}h ${minutes}m ${seconds}s`;
   };
 
-  const [remainingSeconds, setRemainingSeconds] = useState<number[]>(
-    () => liveMatches.map((m) => parseDurationToSeconds(m.startsIn))
-  );
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  const [remainingSeconds, setRemainingSeconds] = useState<number[]>(() => liveMatches.map(() => 0));
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setRemainingSeconds((prev) => prev.map((s) => (s > 0 ? s - 1 : 0)));
-    }, 1000);
+    if (!mounted) return;
+    const update = () => {
+      setRemainingSeconds(liveMatches.map((m) => secondsUntilManilaSlot(m.slotHourLocal)));
+    };
+    update();
+    const intervalId = setInterval(update, 1000);
     return () => clearInterval(intervalId);
-  }, []);
+  }, [mounted]);
 
   const standings = [
     { team: 'PARIVISION', logo: '/Parivision.png', record: '2-0' },
@@ -197,11 +221,9 @@ export default function ScheduleSection() {
                   >
                     <div className="col-span-3 md:col-span-2 text-purple-200 text-sm md:text-base flex items-center gap-2">
                       <span className="inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                      {remainingSeconds[idx] !== undefined
-                        ? remainingSeconds[idx] <= 0
-                          ? 'Live'
-                          : formatSeconds(remainingSeconds[idx])
-                        : m.startsIn}
+                      {mounted
+                        ? (remainingSeconds[idx] <= 0 ? 'Live' : formatSeconds(remainingSeconds[idx]))
+                        : (m.startsIn ?? '—')}
                     </div>
                     {/* Keep a fixed score column for alignment, but it can be empty if score is omitted */}
                     <div className="col-span-2 md:col-span-1 text-white font-semibold text-center">{m.score ?? ''}</div>
