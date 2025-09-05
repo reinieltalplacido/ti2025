@@ -1,4 +1,19 @@
+"use client";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+
+interface TeamRef {
+  name: string;
+  logo: string;
+}
+
+interface LiveMatch {
+  startsIn: string;
+  score?: string;
+  a: TeamRef;
+  b: TeamRef;
+  bo: string;
+}
 
 export default function ScheduleSection() {
   const stages = [
@@ -29,7 +44,7 @@ export default function ScheduleSection() {
     return { label: 'Live', color: 'red' };
   };
 
-  const liveMatches = [
+  const liveMatches: LiveMatch[] = [
     { startsIn: '3h 53m 46s',  a: { name: 'XG', logo: '/Xtreme Gaming.png' }, b: { name: 'Falcons', logo: '/Team Falcons.png' }, bo: 'Bo3' },
     { startsIn: '3h 53m 46s',  a: { name: 'TSpirit', logo: '/team Spirit.png' }, b: { name: 'Tundra', logo: '/Tundra.png' }, bo: 'Bo3' },
     { startsIn: '3h 53m 46s',  a: { name: 'Aurora', logo: '/Aurora Gaming.png' }, b: { name: 'YkBros', logo: '/Yakult_Brothers.png' }, bo: 'Bo3' },
@@ -39,6 +54,36 @@ export default function ScheduleSection() {
     { startsIn: '6h 53m 46s',  a: { name: 'NAVI', logo: '/Natus Vincere.png' }, b: { name: 'BB', logo: '/Betboom.png' }, bo: 'Bo3' },
     { startsIn: '6h 53m 46s',  a: { name: 'BOOM', logo: '/Boom Esports.png' }, b: { name: 'HEROIC', logo: '/Heroic.png' }, bo: 'Bo3' }
   ];
+
+  // Parse and run per-match countdowns based on the initial startsIn string (e.g., "3h 53m 46s")
+  const parseDurationToSeconds = (text: string): number => {
+    if (!text) return 0;
+    const hoursMatch = text.match(/(\d+)\s*h/);
+    const minutesMatch = text.match(/(\d+)\s*m/);
+    const secondsMatch = text.match(/(\d+)\s*s/);
+    const hours = hoursMatch ? parseInt(hoursMatch[1], 10) : 0;
+    const minutes = minutesMatch ? parseInt(minutesMatch[1], 10) : 0;
+    const seconds = secondsMatch ? parseInt(secondsMatch[1], 10) : 0;
+    return hours * 3600 + minutes * 60 + seconds;
+  };
+
+  const formatSeconds = (totalSeconds: number): string => {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    return `${hours}h ${minutes}m ${seconds}s`;
+  };
+
+  const [remainingSeconds, setRemainingSeconds] = useState<number[]>(
+    () => liveMatches.map((m) => parseDurationToSeconds(m.startsIn))
+  );
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setRemainingSeconds((prev) => prev.map((s) => (s > 0 ? s - 1 : 0)));
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
 
   const standings = [
     { team: 'PARIVISION', logo: '/Parivision.png', record: '2-0' },
@@ -152,11 +197,14 @@ export default function ScheduleSection() {
                   >
                     <div className="col-span-3 md:col-span-2 text-purple-200 text-sm md:text-base flex items-center gap-2">
                       <span className="inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                      {m.startsIn}
+                      {remainingSeconds[idx] !== undefined
+                        ? remainingSeconds[idx] <= 0
+                          ? 'Live'
+                          : formatSeconds(remainingSeconds[idx])
+                        : m.startsIn}
                     </div>
-                    <div className="col-span-2 md:col-span-1 text-white font-semibold text-center">
-                      {m.score}
-                    </div>
+                    {/* Keep a fixed score column for alignment, but it can be empty if score is omitted */}
+                    <div className="col-span-2 md:col-span-1 text-white font-semibold text-center">{m.score ?? ''}</div>
                     <div className="col-span-4 md:col-span-4 flex items-center justify-end gap-3 min-w-0">
                       <div className="relative w-6 h-6 md:w-7 md:h-7">
                         <Image src={m.a.logo} alt={`${m.a.name} logo`} fill sizes="28px" className="object-contain" />

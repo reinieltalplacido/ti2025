@@ -17,11 +17,14 @@ export default function CountdownTimer() {
     seconds: 0
   });
   const [isLive, setIsLive] = useState(false);
+  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
     const targetDate = new Date('2025-09-04T00:00:00Z'); // September 4th, 2025
 
-    const timer = setInterval(() => {
+    let timer: ReturnType<typeof setInterval> | undefined;
+
+    const update = (): number => {
       const now = new Date().getTime();
       const distance = targetDate.getTime() - now;
 
@@ -36,12 +39,39 @@ export default function CountdownTimer() {
       } else {
         setIsLive(true);
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-        clearInterval(timer);
       }
-    }, 1000);
+      setInitialized(true);
+      return distance;
+    };
 
-    return () => clearInterval(timer);
+    const firstDistance = update();
+    if (firstDistance > 0) {
+      timer = setInterval(() => {
+        const d = update();
+        if (d <= 0 && timer) {
+          clearInterval(timer);
+        }
+      }, 1000);
+    }
+
+    return () => {
+      if (timer) clearInterval(timer);
+    };
   }, []);
+
+  if (!initialized) {
+    return (
+      <div className="flex flex-col items-center space-y-6">
+        <div className="flex items-center gap-3">
+          <span className="inline-block w-3 h-3 rounded-full bg-red-500 animate-pulse"></span>
+          <h3 className="text-2xl font-bold text-white text-center">Live Now</h3>
+        </div>
+        <a href="#schedule" className="px-6 py-3 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-semibold transition">
+          See Schedule
+        </a>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col items-center space-y-6">
