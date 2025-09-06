@@ -110,22 +110,22 @@ export default function ScheduleSection() {
   }, [mounted]);
 
   const standings = [
-    { team: 'PARIVISION', logo: '/Parivision.png', record: '2-0' },
-    { team: 'Team Tidebound', logo: '/Team TIdebound.png', record: '2-0' },
-    { team: 'Xtreme Gaming', logo: '/Xtreme Gaming.png', record: '2-0' },
-    { team: 'Team Falcons', logo: '/Team Falcons.png', record: '2-0' },
-    { team: 'BetBoom Team', logo: '/Betboom.png', record: '1-1' },
-    { team: 'Natus Vincere', logo: '/Natus Vincere.png', record: '1-1' },
-    { team: 'Team Spirit', logo: '/team Spirit.png', record: '1-1' },
-    { team: 'Tundra Esports', logo: '/Tundra.png', record: '1-1' },
-    { team: 'Yakutou Brothers', logo: '/Yakult_Brothers.png', record: '1-1' },
-    { team: 'Aurora Gaming', logo: '/Aurora Gaming.png', record: '1-1' },
-    { team: 'Nigma Galaxy', logo: '/Nigma Galaxy.png', record: '1-1' },
-    { team: 'Team Liquid', logo: '/Liquid.png', record: '1-1' },
-    { team: 'Team Nemesis', logo: '/Team Nemesis.png', record: '0-2' },
-    { team: 'BOOM Esports', logo: '/Boom Esports.png', record: '0-2' },
-    { team: 'HEROIC', logo: '/Heroic.png', record: '0-2' },
-    { team: 'Wildcard', logo: '/WIldcard.png', record: '0-2' }
+    { team: 'Team Tidebound', logo: '/Team TIdebound.png', record: '3-0' },
+    { team: 'Xtreme Gaming', logo: '/Xtreme Gaming.png', record: '3-0' },
+    { team: 'BetBoom Team', logo: '/Betboom.png', record: '2-1' },
+    { team: 'Team Spirit', logo: '/team Spirit.png', record: '2-1' },
+    { team: 'Team Falcons', logo: '/Team Falcons.png', record: '2-1' },
+    { team: 'Aurora Gaming', logo: '/Aurora Gaming.png', record: '2-1' },
+    { team: 'PARIVISION', logo: '/Parivision.png', record: '2-1' },
+    { team: 'Team Liquid', logo: '/Liquid.png', record: '2-1' },
+    { team: 'Tundra Esports', logo: '/Tundra.png', record: '2-2' },
+    { team: 'Yakutou Brothers', logo: '/Yakult_Brothers.png', record: '2-2' },
+    { team: 'HEROIC', logo: '/Heroic.png', record: '2-2' },
+    { team: 'Natus Vincere', logo: '/Natus Vincere.png', record: '1-3' },
+    { team: 'Nigma Galaxy', logo: '/Nigma Galaxy.png', record: '1-3' },
+    { team: 'BOOM Esports', logo: '/Boom Esports.png', record: '1-3' },
+    { team: 'Wildcard', logo: '/WIldcard.png', record: '1-3' },
+    { team: 'Team Nemesis', logo: '/Team Nemesis.png', record: '0-4', eliminated: true },
   ];
 
   return (
@@ -198,15 +198,18 @@ export default function ScheduleSection() {
                       <div className="col-span-2 text-right">Matches</div>
                     </div>
                     {standings.map((s, i) => (
-                      <div key={i} className="grid grid-cols-12 items-center px-4 py-3 bg-black/10">
+                      <div
+                        key={i}
+                        className={`grid grid-cols-12 items-center px-4 py-3 bg-black/10 ${s.eliminated ? 'bg-red-900/60' : ''}`}
+                      >
                         <div className="col-span-2 text-purple-200 text-sm">{i + 1}.</div>
                         <div className="col-span-8 flex items-center gap-3 min-w-0">
                           <div className="relative w-6 h-6">
                             <Image src={s.logo} alt={`${s.team} logo`} fill sizes="24px" className="object-contain" />
                           </div>
-                          <span className="text-white truncate">{s.team}</span>
+                          <span className={`truncate ${s.eliminated ? 'text-red-300 font-bold' : 'text-white'}`}>{s.team}</span>
                         </div>
-                        <div className="col-span-2 text-white font-semibold text-right">{s.record}</div>
+                        <div className={`col-span-2 font-semibold text-right ${s.eliminated ? 'text-red-300' : 'text-white'}`}>{s.record}</div>
                       </div>
                     ))}
                   </div>
@@ -214,15 +217,18 @@ export default function ScheduleSection() {
                 {/* Mobile standings */}
                 <div className="md:hidden divide-y divide-purple-500/20">
                   {standings.map((s, i) => (
-                    <div key={i} className="flex items-center justify-between px-4 py-3 bg-black/10">
+                    <div
+                      key={i}
+                      className={`flex items-center justify-between px-4 py-3 bg-black/10 ${s.eliminated ? 'bg-red-900/60' : ''}`}
+                    >
                       <div className="flex items-center gap-3 min-w-0">
                         <span className="text-purple-200 text-sm w-5 text-right">{i + 1}.</span>
                         <div className="relative w-6 h-6">
                           <Image src={s.logo} alt={`${s.team} logo`} fill sizes="24px" className="object-contain" />
                         </div>
-                        <span className="text-white text-sm truncate">{s.team}</span>
+                        <span className={`text-sm truncate ${s.eliminated ? 'text-red-300 font-bold' : 'text-white'}`}>{s.team}</span>
                       </div>
-                      <span className="text-white font-semibold text-sm">{s.record}</span>
+                      <span className={`font-semibold text-sm ${s.eliminated ? 'text-red-300' : 'text-white'}`}>{s.record}</span>
                     </div>
                   ))}
                 </div>
