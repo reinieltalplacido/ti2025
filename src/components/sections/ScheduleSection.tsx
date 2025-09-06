@@ -180,7 +180,7 @@ export default function ScheduleSection() {
         {/* Live Matches + Standings */}
         <div className="mt-20">
           <div className="text-center mb-8">
-            <h3 className="text-3xl md:text-4xl font-bold text-white">Live Matches</h3>
+            <h3 className="text-3xl md:text-4xl font-bold text-white">Upcoming Matches</h3>
           </div>
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8">
             {/* Standings Panel */}
@@ -189,22 +189,40 @@ export default function ScheduleSection() {
                 <div className="px-4 py-3 border-b border-purple-500/30">
                   <h4 className="text-white font-semibold">Standings</h4>
                 </div>
-                <div className="divide-y divide-purple-500/20">
-                  <div className="grid grid-cols-12 px-4 py-2 text-purple-300 text-sm">
-                    <div className="col-span-2">#</div>
-                    <div className="col-span-8">Team</div>
-                    <div className="col-span-2 text-right">Matches</div>
+                {/* Desktop/tablet standings */}
+                <div className="hidden md:block">
+                  <div className="divide-y divide-purple-500/20">
+                    <div className="grid grid-cols-12 px-4 py-2 text-purple-300 text-sm">
+                      <div className="col-span-2">#</div>
+                      <div className="col-span-8">Team</div>
+                      <div className="col-span-2 text-right">Matches</div>
+                    </div>
+                    {standings.map((s, i) => (
+                      <div key={i} className="grid grid-cols-12 items-center px-4 py-3 bg-black/10">
+                        <div className="col-span-2 text-purple-200 text-sm">{i + 1}.</div>
+                        <div className="col-span-8 flex items-center gap-3 min-w-0">
+                          <div className="relative w-6 h-6">
+                            <Image src={s.logo} alt={`${s.team} logo`} fill sizes="24px" className="object-contain" />
+                          </div>
+                          <span className="text-white truncate">{s.team}</span>
+                        </div>
+                        <div className="col-span-2 text-white font-semibold text-right">{s.record}</div>
+                      </div>
+                    ))}
                   </div>
+                </div>
+                {/* Mobile standings */}
+                <div className="md:hidden divide-y divide-purple-500/20">
                   {standings.map((s, i) => (
-                    <div key={i} className="grid grid-cols-12 items-center px-4 py-3 bg-black/10">
-                      <div className="col-span-2 text-purple-200 text-sm">{i + 1}.</div>
-                      <div className="col-span-8 flex items-center gap-3 min-w-0">
+                    <div key={i} className="flex items-center justify-between px-4 py-3 bg-black/10">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <span className="text-purple-200 text-sm w-5 text-right">{i + 1}.</span>
                         <div className="relative w-6 h-6">
                           <Image src={s.logo} alt={`${s.team} logo`} fill sizes="24px" className="object-contain" />
                         </div>
-                        <span className="text-white truncate">{s.team}</span>
+                        <span className="text-white text-sm truncate">{s.team}</span>
                       </div>
-                      <div className="col-span-2 text-white font-semibold text-right">{s.record}</div>
+                      <span className="text-white font-semibold text-sm">{s.record}</span>
                     </div>
                   ))}
                 </div>
@@ -213,7 +231,8 @@ export default function ScheduleSection() {
 
             {/* Matches Panel */}
             <div className="md:col-span-8">
-              <div className="rounded-xl overflow-hidden border border-purple-500/30">
+              {/* Desktop/tablet list */}
+              <div className="hidden md:block rounded-xl overflow-hidden border border-purple-500/30">
                 {liveMatches.map((m, idx) => (
                   <div
                     key={idx}
@@ -240,6 +259,35 @@ export default function ScheduleSection() {
                       <span className="text-white font-medium truncate">{m.b.name}</span>
                       <div className="relative w-6 h-6 md:w-7 md:h-7">
                         <Image src={m.b.logo} alt={`${m.b.name} logo`} fill sizes="28px" className="object-contain" />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {/* Mobile cards */}
+              <div className="md:hidden space-y-3">
+                {liveMatches.map((m, idx) => (
+                  <div key={idx} className="rounded-lg border border-purple-500/30 bg-gradient-to-r from-purple-900/30 to-purple-800/10 p-4">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-purple-200 text-xs inline-flex items-center gap-2">
+                        <span className="inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                        {mounted ? (remainingSeconds[idx] <= 0 ? 'Live' : formatSeconds(remainingSeconds[idx])) : (m.startsIn ?? '—')}
+                      </span>
+                      <span className="text-gray-300 text-xs">({m.bo})</span>
+                    </div>
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <div className="relative w-6 h-6">
+                          <Image src={m.a.logo} alt={`${m.a.name} logo`} fill sizes="24px" className="object-contain" />
+                        </div>
+                        <span className="text-white text-sm font-medium truncate">{m.a.name}</span>
+                      </div>
+                      <span className="text-gray-400 text-xs">VS</span>
+                      <div className="flex items-center gap-2 min-w-0">
+                        <span className="text-white text-sm font-medium truncate">{m.b.name}</span>
+                        <div className="relative w-6 h-6">
+                          <Image src={m.b.logo} alt={`${m.b.name} logo`} fill sizes="24px" className="object-contain" />
+                        </div>
                       </div>
                     </div>
                   </div>
