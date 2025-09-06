@@ -46,14 +46,14 @@ export default function ScheduleSection() {
   };
 
   const liveMatches: LiveMatch[] = [
-    { a: { name: 'XG', logo: '/Xtreme Gaming.png' }, b: { name: 'Falcons', logo: '/Team Falcons.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
-    { a: { name: 'TSpirit', logo: '/team Spirit.png' }, b: { name: 'Tundra', logo: '/Tundra.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
-    { a: { name: 'Aurora', logo: '/Aurora Gaming.png' }, b: { name: 'YkBros', logo: '/Yakult_Brothers.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
-    { a: { name: 'Nem', logo: '/Team Nemesis.png' }, b: { name: 'Wildcard', logo: '/WIldcard.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
-    { a: { name: 'PARI', logo: '/Parivision.png' }, b: { name: 'Tidebd', logo: '/Team TIdebound.png' }, bo: 'Bo3', slotHourLocal: 19, startsIn: '—' },
-    { a: { name: 'NGX', logo: '/Nigma Galaxy.png' }, b: { name: 'Liquid', logo: '/Liquid.png' }, bo: 'Bo3', slotHourLocal: 19, startsIn: '—' },
-    { a: { name: 'NAVI', logo: '/Natus Vincere.png' }, b: { name: 'BB', logo: '/Betboom.png' }, bo: 'Bo3', slotHourLocal: 19, startsIn: '—' },
-    { a: { name: 'BOOM', logo: '/Boom Esports.png' }, b: { name: 'HEROIC', logo: '/Heroic.png' }, bo: 'Bo3', slotHourLocal: 19, startsIn: '—' }
+    { a: { name: 'XG', logo: '/Xtreme Gaming.png' }, b: { name: 'Tidebd', logo: '/Team TIdebound.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
+    { a: { name: 'TSpirit', logo: '/team Spirit.png' }, b: { name: 'PARI', logo: '/Parivision.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
+    { a: { name: 'Falcons', logo: '/Team Falcons.png' }, b: { name: 'Liquid', logo: '/Liquid.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
+    { a: { name: 'Aurora', logo: '/Aurora Gaming.png' }, b: { name: 'BB', logo: '/Betboom.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
+    { a: { name: 'TBD', logo: '/file.svg' }, b: { name: 'TBD', logo: '/file.svg' }, bo: 'Bo3', slotHourLocal: 19, startsIn: '—' },
+    { a: { name: 'TBD', logo: '/file.svg' }, b: { name: 'TBD', logo: '/file.svg' }, bo: 'Bo3', slotHourLocal: 19, startsIn: '—' },
+    { a: { name: 'TBD', logo: '/file.svg' }, b: { name: 'TBD', logo: '/file.svg' }, bo: 'Bo3', slotHourLocal: 19, startsIn: '—' },
+    { a: { name: 'TBD', logo: '/file.svg' }, b: { name: 'TBD', logo: '/file.svg' }, bo: 'Bo3', slotHourLocal: 19, startsIn: '—' },
   ];
 
   // Compute countdowns to fixed Manila slots: 4 PM and 7 PM (Asia/Manila is UTC+8, no DST)
