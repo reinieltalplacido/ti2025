@@ -46,14 +46,10 @@ export default function ScheduleSection() {
   };
 
   const liveMatches: LiveMatch[] = [
-    { a: { name: 'XG', logo: '/Xtreme Gaming.png' }, b: { name: 'Tidebd', logo: '/Team TIdebound.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
-    { a: { name: 'TSpirit', logo: '/team Spirit.png' }, b: { name: 'PARI', logo: '/Parivision.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
-    { a: { name: 'Falcons', logo: '/Team Falcons.png' }, b: { name: 'Liquid', logo: '/Liquid.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
-    { a: { name: 'Aurora', logo: '/Aurora Gaming.png' }, b: { name: 'BB', logo: '/Betboom.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
-    { a: { name: 'TBD', logo: '/file.svg' }, b: { name: 'TBD', logo: '/file.svg' }, bo: 'Bo3', slotHourLocal: 19, startsIn: '—' },
-    { a: { name: 'TBD', logo: '/file.svg' }, b: { name: 'TBD', logo: '/file.svg' }, bo: 'Bo3', slotHourLocal: 19, startsIn: '—' },
-    { a: { name: 'TBD', logo: '/file.svg' }, b: { name: 'TBD', logo: '/file.svg' }, bo: 'Bo3', slotHourLocal: 19, startsIn: '—' },
-    { a: { name: 'TBD', logo: '/file.svg' }, b: { name: 'TBD', logo: '/file.svg' }, bo: 'Bo3', slotHourLocal: 19, startsIn: '—' },
+    { a: { name: 'Aurora', logo: '/Aurora Gaming.png' }, b: { name: 'NGX', logo: '/Nigma Galaxy.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
+    { a: { name: 'PARI', logo: '/Parivision.png' }, b: { name: 'Wildcard', logo: '/WIldcard.png' }, bo: 'Bo3', slotHourLocal: 19, startsIn: '—' },
+    { a: { name: 'Liquid', logo: '/Liquid.png' }, b: { name: 'Tundra', logo: '/Tundra.png' }, bo: 'Bo3', slotHourLocal: 22, startsIn: '—' },
+    { a: { name: 'Falcons', logo: '/Team Falcons.png' }, b: { name: 'TSpirit', logo: '/team Spirit.png' }, bo: 'Bo3', slotHourLocal: 1, startsIn: '—' },
   ];
 
   // Compute countdowns to fixed Manila slots: 4 PM and 7 PM (Asia/Manila is UTC+8, no DST)
@@ -110,21 +106,21 @@ export default function ScheduleSection() {
   }, [mounted]);
 
   const standings = [
-    { team: 'Team Tidebound', logo: '/Team TIdebound.png', record: '3-0' },
-    { team: 'Xtreme Gaming', logo: '/Xtreme Gaming.png', record: '3-0' },
-    { team: 'BetBoom Team', logo: '/Betboom.png', record: '2-1' },
-    { team: 'Team Spirit', logo: '/team Spirit.png', record: '2-1' },
-    { team: 'Team Falcons', logo: '/Team Falcons.png', record: '2-1' },
-    { team: 'Aurora Gaming', logo: '/Aurora Gaming.png', record: '2-1' },
-    { team: 'PARIVISION', logo: '/Parivision.png', record: '2-1' },
-    { team: 'Team Liquid', logo: '/Liquid.png', record: '2-1' },
-    { team: 'Tundra Esports', logo: '/Tundra.png', record: '2-2' },
-    { team: 'Yakutou Brothers', logo: '/Yakult_Brothers.png', record: '2-2' },
-    { team: 'HEROIC', logo: '/Heroic.png', record: '2-2' },
-    { team: 'Natus Vincere', logo: '/Natus Vincere.png', record: '1-3' },
-    { team: 'Nigma Galaxy', logo: '/Nigma Galaxy.png', record: '1-3' },
-    { team: 'BOOM Esports', logo: '/Boom Esports.png', record: '1-3' },
-    { team: 'Wildcard', logo: '/WIldcard.png', record: '1-3' },
+    { team: 'Xtreme Gaming', logo: '/Xtreme Gaming.png', record: '4-0' },
+    { team: 'BetBoom Team', logo: '/Betboom.png', record: '4-1' },
+    { team: 'Team Tidebound', logo: '/Team TIdebound.png', record: '4-1' },
+    { team: 'PARIVISION', logo: '/Parivision.png', record: '3-2' },
+    { team: 'Aurora Gaming', logo: '/Aurora Gaming.png', record: '3-2' },
+    { team: 'HEROIC', logo: '/Heroic.png', record: '3-2' },
+    { team: 'Team Falcons', logo: '/Team Falcons.png', record: '3-2' },
+    { team: 'Team Liquid', logo: '/Liquid.png', record: '3-2' },
+    { team: 'Nigma Galaxy', logo: '/Nigma Galaxy.png', record: '2-3' },
+    { team: 'Tundra Esports', logo: '/Tundra.png', record: '2-3' },
+    { team: 'Yakutou Brothers', logo: '/Yakult_Brothers.png', record: '2-3' },
+    { team: 'Team Spirit', logo: '/team Spirit.png', record: '2-3' },
+    { team: 'Wildcard', logo: '/WIldcard.png', record: '2-3' },
+    { team: 'Natus Vincere', logo: '/Natus Vincere.png', record: '1-4', eliminated: true },
+    { team: 'BOOM Esports', logo: '/Boom Esports.png', record: '1-4' , eliminated: true },
     { team: 'Team Nemesis', logo: '/Team Nemesis.png', record: '0-4', eliminated: true },
   ];
 
@@ -195,7 +191,7 @@ export default function ScheduleSection() {
                     <div className="grid grid-cols-12 px-4 py-2 text-purple-300 text-sm">
                       <div className="col-span-2">#</div>
                       <div className="col-span-8">Team</div>
-                      <div className="col-span-2 text-right">Matches</div>
+                      <div className="col-span-2 text-right">Standings</div>
                     </div>
                     {standings.map((s, i) => (
                       <div
