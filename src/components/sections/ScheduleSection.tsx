@@ -46,10 +46,7 @@ export default function ScheduleSection() {
   };
 
   const liveMatches: LiveMatch[] = [
-    { a: { name: 'Aurora', logo: '/Aurora Gaming.png' }, b: { name: 'NGX', logo: '/Nigma Galaxy.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
-    { a: { name: 'PARI', logo: '/Parivision.png' }, b: { name: 'Wildcard', logo: '/WIldcard.png' }, bo: 'Bo3', slotHourLocal: 19, startsIn: '—' },
-    { a: { name: 'Liquid', logo: '/Liquid.png' }, b: { name: 'Tundra', logo: '/Tundra.png' }, bo: 'Bo3', slotHourLocal: 22, startsIn: '—' },
-    { a: { name: 'Falcons', logo: '/Team Falcons.png' }, b: { name: 'TSpirit', logo: '/team Spirit.png' }, bo: 'Bo3', slotHourLocal: 1, startsIn: '—' },
+    { a: { name: 'Tidebound', logo: '/Team Tidebound.png' }, b: { name: 'Falcons', logo: '/Team Falcons.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
   ];
 
   // Compute countdowns to fixed Manila slots: 4 PM and 7 PM (Asia/Manila is UTC+8, no DST)
