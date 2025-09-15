@@ -1,20 +1,5 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-
-interface TeamRef {
-  name: string;
-  logo: string;
-}
-
-interface LiveMatch {
-  a: TeamRef;
-  b: TeamRef;
-  bo: string;
-  slotHourLocal: number; // 16 for 4 PM, 19 for 7 PM (Asia/Manila)
-  score?: string;
-  startsIn?: string; // SSR placeholder to avoid hydration mismatch
-}
 
 export default function ScheduleSection() {
   const stages = [
@@ -35,9 +20,7 @@ export default function ScheduleSection() {
   const now = new Date();
   const formatDateRange = (start: Date, end: Date) => {
     const options: Intl.DateTimeFormatOptions = { month: 'long', day: 'numeric', year: 'numeric' };
-    const startStr = start.toLocaleDateString(undefined, options);
-    const endStr = end.toLocaleDateString(undefined, options);
-    return `${startStr} - ${endStr}`;
+    return `${start.toLocaleDateString(undefined, options)} - ${end.toLocaleDateString(undefined, options)}`;
   };
   const getStatus = (start: Date, end: Date) => {
     if (now < start) return { label: 'Upcoming', color: 'green' };
@@ -45,80 +28,11 @@ export default function ScheduleSection() {
     return { label: 'Live', color: 'red' };
   };
 
-  const liveMatches: LiveMatch[] = [
-    { a: { name: 'Tidebound', logo: '/Team Tidebound.png' }, b: { name: 'Falcons', logo: '/Team Falcons.png' }, bo: 'Bo3', slotHourLocal: 16, startsIn: '—' },
-  ];
-
-  // Compute countdowns to fixed Manila slots: 4 PM and 7 PM (Asia/Manila is UTC+8, no DST)
-  const MANILA_UTC_OFFSET_HOURS = 8;
-  const LIVE_WINDOW_SECONDS = 3 * 60 * 60; // show "Live" for 3 hours after start
-
-  const secondsUntilManilaSlot = (hourLocal: number): number => {
-    const nowMs = Date.now();
-    const manilaNow = new Date(nowMs + MANILA_UTC_OFFSET_HOURS * 3600 * 1000);
-    const y = manilaNow.getUTCFullYear();
-    const m = manilaNow.getUTCMonth();
-    const d = manilaNow.getUTCDate();
-
-    const todaySlotUtcMs = Date.UTC(y, m, d, hourLocal - MANILA_UTC_OFFSET_HOURS, 0, 0);
-    if (nowMs <= todaySlotUtcMs) {
-      return Math.floor((todaySlotUtcMs - nowMs) / 1000);
-    }
-
-    // If within live window after start, mark as Live
-    const sinceStartSeconds = Math.floor((nowMs - todaySlotUtcMs) / 1000);
-    if (sinceStartSeconds <= LIVE_WINDOW_SECONDS) {
-      return 0;
-    }
-
-    // Otherwise, count down to tomorrow's same slot
-    const tomorrowManila = new Date(Date.UTC(y, m, d) + 24 * 60 * 60 * 1000);
-    const y2 = tomorrowManila.getUTCFullYear();
-    const m2 = tomorrowManila.getUTCMonth();
-    const d2 = tomorrowManila.getUTCDate();
-    const nextSlotUtcMs = Date.UTC(y2, m2, d2, hourLocal - MANILA_UTC_OFFSET_HOURS, 0, 0);
-    return Math.max(0, Math.floor((nextSlotUtcMs - nowMs) / 1000));
-  };
-
-  const formatSeconds = (totalSeconds: number): string => {
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
-    return `${hours}h ${minutes}m ${seconds}s`;
-  };
-
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
-  const [remainingSeconds, setRemainingSeconds] = useState<number[]>(() => liveMatches.map(() => 0));
-
-  useEffect(() => {
-    if (!mounted) return;
-    const update = () => {
-      setRemainingSeconds(liveMatches.map((m) => secondsUntilManilaSlot(m.slotHourLocal)));
-    };
-    update();
-    const intervalId = setInterval(update, 1000);
-    return () => clearInterval(intervalId);
-  }, [mounted]);
-
-  const standings = [
-    { team: 'Xtreme Gaming', logo: '/Xtreme Gaming.png', record: '4-0' },
-    { team: 'BetBoom Team', logo: '/Betboom.png', record: '4-1' },
-    { team: 'Team Tidebound', logo: '/Team TIdebound.png', record: '4-1' },
-    { team: 'PARIVISION', logo: '/Parivision.png', record: '3-2' },
-    { team: 'Aurora Gaming', logo: '/Aurora Gaming.png', record: '3-2' },
-    { team: 'HEROIC', logo: '/Heroic.png', record: '3-2' },
-    { team: 'Team Falcons', logo: '/Team Falcons.png', record: '3-2' },
-    { team: 'Team Liquid', logo: '/Liquid.png', record: '3-2' },
-    { team: 'Nigma Galaxy', logo: '/Nigma Galaxy.png', record: '2-3' },
-    { team: 'Tundra Esports', logo: '/Tundra.png', record: '2-3' },
-    { team: 'Yakutou Brothers', logo: '/Yakult_Brothers.png', record: '2-3' },
-    { team: 'Team Spirit', logo: '/team Spirit.png', record: '2-3' },
-    { team: 'Wildcard', logo: '/WIldcard.png', record: '2-3' },
-    { team: 'Natus Vincere', logo: '/Natus Vincere.png', record: '1-4', eliminated: true },
-    { team: 'BOOM Esports', logo: '/Boom Esports.png', record: '1-4' , eliminated: true },
-    { team: 'Team Nemesis', logo: '/Team Nemesis.png', record: '0-4', eliminated: true },
+  const top4 = [
+    { place: "1st", team: "Team Falcons", prize: "$1,150,533", logo: "/Team Falcons.png" },
+    { place: "2nd", team: "Xtreme Gaming", prize: "$351,977", logo: "/Xtreme Gaming.png" },
+    { place: "3rd", team: "PARIVISION", prize: "$243,609", logo: "/Parivision.png" },
+    { place: "4th", team: "BetBoom Team", prize: "$162,443", logo: "/Betboom.png" },
   ];
 
   return (
@@ -170,143 +84,38 @@ export default function ScheduleSection() {
           </div>
         </div>
 
-        {/* Live Matches + Standings */}
+        {/* Final Bracket + Top 4 */}
         <div className="mt-20">
-          <div className="text-center mb-8">
-            <h3 className="text-3xl md:text-4xl font-bold text-white">Upcoming Matches</h3>
+          <div className="text-center mb-12">
+            <h3 className="text-3xl md:text-4xl font-bold text-white">Playoffs Bracket & Results</h3>
           </div>
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8">
-            {/* Standings Panel */}
-            <div className="md:col-span-4">
-              <div className="rounded-xl overflow-hidden border border-purple-500/30 bg-gradient-to-br from-purple-900/30 to-purple-800/20">
-                <div className="px-4 py-3 border-b border-purple-500/30">
-                  <h4 className="text-white font-semibold">Standings</h4>
-                </div>
-                {/* Desktop/tablet standings */}
-                <div className="hidden md:block">
-                  <div className="divide-y divide-purple-500/20">
-                    <div className="grid grid-cols-12 px-4 py-2 text-purple-300 text-sm">
-                      <div className="col-span-2">#</div>
-                      <div className="col-span-8">Team</div>
-                      <div className="col-span-2 text-right">Standings</div>
-                    </div>
-                    {standings.map((s, i) => (
-                      <div
-                        key={i}
-                        className={`grid grid-cols-12 items-center px-4 py-3 bg-black/10 ${s.eliminated ? 'bg-red-900/60' : ''}`}
-                      >
-                        <div className="col-span-2 text-purple-200 text-sm">{i + 1}.</div>
-                        <div className="col-span-8 flex items-center gap-3 min-w-0">
-                          <div className="relative w-6 h-6">
-                            <Image src={s.logo} alt={`${s.team} logo`} fill sizes="24px" className="object-contain" />
-                          </div>
-                          <span className={`truncate ${s.eliminated ? 'text-red-300 font-bold' : 'text-white'}`}>{s.team}</span>
-                        </div>
-                        <div className={`col-span-2 font-semibold text-right ${s.eliminated ? 'text-red-300' : 'text-white'}`}>{s.record}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                {/* Mobile standings */}
-                <div className="md:hidden divide-y divide-purple-500/20">
-                  {standings.map((s, i) => (
-                    <div
-                      key={i}
-                      className={`flex items-center justify-between px-4 py-3 bg-black/10 ${s.eliminated ? 'bg-red-900/60' : ''}`}
-                    >
-                      <div className="flex items-center gap-3 min-w-0">
-                        <span className="text-purple-200 text-sm w-5 text-right">{i + 1}.</span>
-                        <div className="relative w-6 h-6">
-                          <Image src={s.logo} alt={`${s.team} logo`} fill sizes="24px" className="object-contain" />
-                        </div>
-                        <span className={`text-sm truncate ${s.eliminated ? 'text-red-300 font-bold' : 'text-white'}`}>{s.team}</span>
-                      </div>
-                      <span className={`font-semibold text-sm ${s.eliminated ? 'text-red-300' : 'text-white'}`}>{s.record}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
 
-            {/* Matches Panel */}
-            <div className="md:col-span-8">
-              {/* Desktop/tablet list */}
-              <div className="hidden md:block rounded-xl overflow-hidden border border-purple-500/30">
-                {liveMatches.map((m, idx) => (
-                  <div
-                    key={idx}
-                    className={`grid grid-cols-12 items-center gap-3 px-4 md:px-6 py-4 bg-gradient-to-r from-purple-900/20 to-transparent ${idx !== liveMatches.length - 1 ? 'border-b border-purple-500/20' : ''}`}
-                  >
-                    <div className="col-span-3 md:col-span-2 text-purple-200 text-sm md:text-base flex items-center gap-2">
-                      <span className="inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                      {mounted
-                        ? (remainingSeconds[idx] <= 0 ? 'Live' : formatSeconds(remainingSeconds[idx]))
-                        : (m.startsIn ?? '—')}
-                    </div>
-                    {/* Keep a fixed score column for alignment, but it can be empty if score is omitted */}
-                    <div className="col-span-2 md:col-span-1 text-white font-semibold text-center">{m.score ?? ''}</div>
-                    <div className="col-span-4 md:col-span-4 flex items-center justify-end gap-3 min-w-0">
-                      <div className="relative w-6 h-6 md:w-7 md:h-7">
-                        <Image src={m.a.logo} alt={`${m.a.name} logo`} fill sizes="28px" className="object-contain" />
-                      </div>
-                      <span className="text-white font-medium truncate text-right">{m.a.name}</span>
-                    </div>
-                    <div className="col-span-1 md:col-span-1 text-center text-gray-300 text-sm">
-                      VS <span className="text-[10px] align-middle ml-1">({m.bo})</span>
-                    </div>
-                    <div className="col-span-4 md:col-span-4 flex items-center justify-start gap-3 min-w-0">
-                      <span className="text-white font-medium truncate">{m.b.name}</span>
-                      <div className="relative w-6 h-6 md:w-7 md:h-7">
-                        <Image src={m.b.logo} alt={`${m.b.name} logo`} fill sizes="28px" className="object-contain" />
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              {/* Mobile cards */}
-              <div className="md:hidden space-y-3">
-                {liveMatches.map((m, idx) => (
-                  <div key={idx} className="rounded-lg border border-purple-500/30 bg-gradient-to-r from-purple-900/30 to-purple-800/10 p-4">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-purple-200 text-xs inline-flex items-center gap-2">
-                        <span className="inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                        {mounted ? (remainingSeconds[idx] <= 0 ? 'Live' : formatSeconds(remainingSeconds[idx])) : (m.startsIn ?? '—')}
-                      </span>
-                      <span className="text-gray-300 text-xs">({m.bo})</span>
-                    </div>
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="flex items-center gap-2 min-w-0">
-                        <div className="relative w-6 h-6">
-                          <Image src={m.a.logo} alt={`${m.a.name} logo`} fill sizes="24px" className="object-contain" />
-                        </div>
-                        <span className="text-white text-sm font-medium truncate">{m.a.name}</span>
-                      </div>
-                      <span className="text-gray-400 text-xs">VS</span>
-                      <div className="flex items-center gap-2 min-w-0">
-                        <span className="text-white text-sm font-medium truncate">{m.b.name}</span>
-                        <div className="relative w-6 h-6">
-                          <Image src={m.b.logo} alt={`${m.b.name} logo`} fill sizes="24px" className="object-contain" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+          {/* Bracket Placeholder */}
+          <div className="rounded-xl border border-purple-500/30 bg-gradient-to-br from-purple-900/20 to-purple-800/10 p-8 text-center text-purple-200 mb-12">
+            {/* You can later replace this with a full bracket grid */}
+            <p className="text-lg">🏆 Team Falcons are the Champions of The International 2025</p>
+            <p className="text-sm text-gray-300 mt-2">Bracket flow coming soon...</p>
           </div>
-          {/* Watch on YouTube (under the list, not inside) */}
-          <div className="max-w-7xl mx-auto mt-8 flex justify-center">
-            <a
-              href="https://www.youtube.com/@dota2"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-red-600 hover:bg-red-500 text-white font-semibold shadow-lg shadow-red-900/20"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                <path d="M23.498 6.186a3.008 3.008 0 0 0-2.117-2.129C19.663 3.5 12 3.5 12 3.5s-7.663 0-9.381.557A3.008 3.008 0 0 0 .502 6.186 31.35 31.35 0 0 0 0 12a31.35 31.35 0 0 0 .502 5.814 3.008 3.008 0 0 0 2.117 2.129C4.337 20.5 12 20.5 12 20.5s7.663 0 9.381-.557a3.008 3.008 0 0 0 2.117-2.129A31.35 31.35 0 0 0 24 12a31.35 31.35 0 0 0-.502-5.814ZM9.75 15.5v-7l6 3.5-6 3.5Z" />
-              </svg>
-              <span>You can watch here at YouTube</span>
-            </a>
+
+          {/* Top 4 Standings */}
+          <div className="max-w-3xl mx-auto rounded-xl overflow-hidden border border-purple-500/30 bg-gradient-to-br from-purple-900/30 to-purple-800/20">
+            <div className="px-4 py-3 border-b border-purple-500/30">
+              <h4 className="text-white font-semibold">Top 4 Standings</h4>
+            </div>
+            <div className="divide-y divide-purple-500/20">
+              {top4.map((s, i) => (
+                <div key={i} className="flex items-center justify-between px-4 py-4 bg-black/10">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <span className="text-purple-200 font-bold w-10">{s.place}</span>
+                    <div className="relative w-8 h-8">
+                      <Image src={s.logo} alt={`${s.team} logo`} fill sizes="32px" className="object-contain" />
+                    </div>
+                    <span className="text-white font-medium truncate">{s.team}</span>
+                  </div>
+                  <span className="text-green-300 font-semibold">{s.prize}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

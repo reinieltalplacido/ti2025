@@ -94,14 +94,12 @@ export default function HeroSection() {
         <FadeIn className="mb-16">
           <div className="text-lg text-gray-300 font-light mb-2">Current Prize Pool</div>
           <div className="text-6xl md:text-7xl font-bold text-white">
-          $2,413,871
+         $2,707,203
           </div>
         </FadeIn>
 
         {/* Countdown / Live CTA */}
-        <FadeIn className="mb-16">
-          <CountdownTimer />
-        </FadeIn>
+        
 
         {/* Event Details */}
         <FadeIn className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 max-w-2xl mx-auto">
