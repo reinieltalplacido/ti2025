@@ -12,9 +12,9 @@ export default function TournamentHistorySection() {
       year: 2025,
       date: "Sep 4 - 14, 2025",
       teamsCount: 16,
-      winner: "TBD",
-      runnerUp: "TBD",
-      prizePool: "$2,308,107",
+      winner: "Team Falcons",
+      runnerUp: "Xtreme Gaming",
+      prizePool: "$2,707,203",
       location: "Hamburg, Germany",
       champion: "",
       logo: "🏆"
@@ -25,7 +25,7 @@ export default function TournamentHistorySection() {
       teamsCount: 16,
       winner: "Team Liquid",
       runnerUp: "Gaimin Gladiators",
-      prizePool: "$3,200,000",
+      prizePool: "$2,776,566",
       location: "Seattle, USA",
       champion: "Yatoro",
       logo: "🦅"
@@ -36,7 +36,7 @@ export default function TournamentHistorySection() {
       teamsCount: 20,
       winner: "Team Spirit",
       runnerUp: "Gaimin Gladiators",
-      prizePool: "$2,200,000",
+      prizePool: "$3,380,455",
       location: "Seattle, USA",
       champion: "Dyrachyo",
       logo: "⚔️"
@@ -47,7 +47,7 @@ export default function TournamentHistorySection() {
       teamsCount: 20,
       winner: "Tundra Esports",
       runnerUp: "Team Secret",
-      prizePool: "$8,500,000",
+      prizePool: "$18,930,775",
       location: "Singapore",
       champion: "Nine",
       logo: "❄️"
@@ -58,7 +58,7 @@ export default function TournamentHistorySection() {
       teamsCount: 18,
       winner: "Team Spirit",
       runnerUp: "PSG.LGD",
-      prizePool: "$18,200,000",
+      prizePool: "$40,018,195",
       location: "Bucharest, Romania",
       champion: "Yatoro",
       logo: "🦅"
@@ -69,7 +69,7 @@ export default function TournamentHistorySection() {
       teamsCount: 18,
       winner: "OG",
       runnerUp: "Team Liquid",
-      prizePool: "$15,600,000",
+      prizePool: "$34,330,068",
       location: "Shanghai, China",
       champion: "Ana",
       logo: "🌳"
@@ -80,7 +80,7 @@ export default function TournamentHistorySection() {
       teamsCount: 18,
       winner: "OG",
       runnerUp: "PSG.LGD",
-      prizePool: "$25,500,000",
+      prizePool: "$25,532,177",
       location: "Vancouver, Canada",
       champion: "Ana",
       logo: "🌳"
@@ -173,21 +173,22 @@ export default function TournamentHistorySection() {
   const defaultWinnerLogo = "/50px-Dota2_Aegis_allmode.png";
 
   const winnerLogoMap: Record<string, string> = {
+    "Team Falcons": "/Team Falcons.png",
     "Team Spirit": "/team Spirit.png",
     "Team Liquid": "/Liquid.png",
     "Tundra Esports": "/Tundra.png",
     "Natus Vincere": "/Natus Vincere.png",
-    // Newly added mappings based on available assets in /public
     "OG": "/OG.png",
     "Wings Gaming": "/wingsgaming.png",
     "Evil Geniuses": "/EvilGeniuses.png",
     "Newbee": "/newbee.png",
     "Alliance": "/Alliance.png",
     "Invictus Gaming": "/Invictus GAming.png",
-    // Add more mappings when assets are available
+   
   };
 
   const runnerUpLogoMap: Record<string, string> = {
+    "Xtreme Gaming": "/Xtreme Gaming.png",
     "Team Liquid": "/Liquid.png",
     "Natus Vincere": "/Natus Vincere.png",
     // Newly added mappings based on available assets in /public
@@ -379,22 +380,22 @@ export default function TournamentHistorySection() {
         {/* Stats Section */}
         <div className="mt-20 grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="bg-gradient-to-br from-purple-900/30 to-purple-800/20 backdrop-blur-sm rounded-xl p-6 border border-purple-500/30 text-center">
-            <div className="text-3xl font-bold text-purple-400 mb-2">13</div>
+            <div className="text-3xl font-bold text-purple-400 mb-2">14</div>
             <div className="text-white font-medium">Tournaments</div>
           </div>
           
           <div className="bg-gradient-to-br from-purple-900/30 to-purple-800/20 backdrop-blur-sm rounded-xl p-6 border border-purple-500/30 text-center">
-            <div className="text-3xl font-bold text-purple-400 mb-2">$200M+</div>
-            <div className="text-white font-medium">Total Prize Pool</div>
+            <div className="text-3xl font-bold text-purple-400 mb-2">$208,749,019</div>
+            <div className="text-white font-medium">Cumulative Prize Pool</div>
           </div>
           
           <div className="bg-gradient-to-br from-purple-900/30 to-purple-800/20 backdrop-blur-sm rounded-xl p-6 border border-purple-500/30 text-center">
-            <div className="text-3xl font-bold text-purple-400 mb-2">8</div>
+            <div className="text-3xl font-bold text-purple-400 mb-2">12</div>
             <div className="text-white font-medium">Different Winners</div>
           </div>
           
           <div className="bg-gradient-to-br from-purple-900/30 to-purple-800/20 backdrop-blur-sm rounded-xl p-6 border border-purple-500/30 text-center">
-            <div className="text-3xl font-bold text-purple-400 mb-2">15</div>
+            <div className="text-3xl font-bold text-purple-400 mb-2">8</div>
             <div className="text-white font-medium">Countries Hosted</div>
           </div>
         </div>
