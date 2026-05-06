@@ -29,10 +29,10 @@ export default function ScheduleSection() {
   };
 
   const top4 = [
-    { place: "1st", team: "Team Falcons", prize: "$1,150,533", logo: "/Team Falcons.png" },
-    { place: "2nd", team: "Xtreme Gaming", prize: "$351,977", logo: "/Xtreme Gaming.png" },
-    { place: "3rd", team: "PARIVISION", prize: "$243,609", logo: "/Parivision.png" },
-    { place: "4th", team: "BetBoom Team", prize: "$162,443", logo: "/Betboom.png" },
+    { place: "1st", team: "Team Falcons", prize: "$1,150,533", logo: "/team-falcons.png" },
+    { place: "2nd", team: "Xtreme Gaming", prize: "$351,977", logo: "/xtreme-gaming.png" },
+    { place: "3rd", team: "PARIVISION", prize: "$243,609", logo: "/parivision.png" },
+    { place: "4th", team: "BetBoom Team", prize: "$162,443", logo: "/betboom.png" },
   ];
 
   return (

@@ -1,5 +1,6 @@
 import HeroSection from "../components/sections/HeroSection";
 import TeamsSection from "../components/sections/TeamsSection";
+import PlayoffsSection from "../components/sections/PlayoffsSection";
 import ScheduleSection from "../components/sections/ScheduleSection";
 import TournamentHistorySection from "../components/sections/TournamentHistorySection";
 import Footer from "../components/sections/Footer";
@@ -9,6 +10,7 @@ export default function Home() {
     <main className="min-h-screen">
       <HeroSection />
       <TeamsSection />
+      <PlayoffsSection />
       <ScheduleSection />
       <TournamentHistorySection />
       <Footer />

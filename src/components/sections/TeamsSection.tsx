@@ -1,20 +1,7 @@
 import Image from "next/image";
+import { directInvites, regionalQualifiers } from "@/data/teamsData";
 
 export default function TeamsSection() {
- 
-  const directInvites = [
-    { id: 1, name: "Team Liquid", logo: "/Liquid.png", status: "Invited" },
-    { id: 2, name: "Parivision", logo: "/Parivision.png", status: "Invited" },
-    { id: 3, name: "BetBoom Team", logo: "/Betboom.png", status: "Invited" },
-    { id: 4, name: "Team Tidebound", logo: "/Team TIdebound.png", status: "Invited" },
-    { id: 8, name: "Yakult Brothers", logo: "/Yakult_Brothers.png", status: "Invited" },
-    { id: 5, name: "Team Spirit", logo: "/team Spirit.png", status: "Invited" },
-    { id: 6, name: "Team Falcons", logo: "/Team Falcons.png", status: "Invited" },
-    { id: 7, name: "Tundra Esports", logo: "/Tundra.png", status: "Invited" },
-  ];
-
-
-
   return (
     <section className="relative py-20 bg-gradient-to-b from-[#000000] via-[#111827] via-60% to-black overflow-hidden">
       {/* Background Pattern */}
@@ -71,149 +58,24 @@ export default function TeamsSection() {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {/* Western Europe */}
-            <div className="space-y-4">
-              <div className="text-center group">
-                <div className="text-white font-medium text-lg mb-3">Natus Vincere</div>
+            {regionalQualifiers.map((team) => (
+              <div key={team.id} className="text-center group">
+                <div className="text-white font-medium text-lg mb-3">{team.name}</div>
                 <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700/50 group-hover:border-purple-500/50 transition-all duration-300">
                   <div className="relative w-20 h-20 mx-auto mb-3">
                     <Image
-                      src="/Natus Vincere.png"
-                      alt="Natus Vincere logo"
+                      src={team.logo}
+                      alt={`${team.name} logo`}
                       fill
                       className="object-contain"
                       sizes="80px"
                       priority
                     />
                   </div>
-                  <div className="text-white text-sm font-medium">Western Europe</div>
+                  <div className="text-purple-400 text-sm font-medium">{team.region}</div>
                 </div>
               </div>
-              <div className="text-center group">
-                <div className="text-white font-medium text-lg mb-3">Nigma Galaxy</div>
-                <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700/50 group-hover:border-purple-500/50 transition-all duration-300">
-                  <div className="relative w-20 h-20 mx-auto mb-3">
-                    <Image
-                      src="/Nigma Galaxy.png"
-                      alt="Nigma Galaxy logo"
-                      fill
-                      className="object-contain"
-                      sizes="80px"
-                      priority
-                    />
-                  </div>
-                  <div className="text-white text-sm font-medium">Western Europe</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Eastern Europe */}
-            <div className="space-y-4">
-              <div className="text-center group">
-                <div className="text-white font-medium text-lg mb-3">Aurora Gaming</div>
-                <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700/50 group-hover:border-purple-500/50 transition-all duration-300">
-                  <div className="relative w-20 h-20 mx-auto mb-3">
-                    <Image
-                      src="/Aurora Gaming.png"
-                      alt="Aurora Gaming logo"
-                      fill
-                      className="object-contain"
-                      sizes="80px"
-                      priority
-                    />
-                  </div>
-                  <div className="text-white text-sm font-medium">Eastern Europe</div>
-                </div>
-              </div>
-              <div className="text-center group">
-                <div className="text-white font-medium text-lg mb-3">HEROIC</div>
-                <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700/50 group-hover:border-purple-500/50 transition-all duration-300">
-                  <div className="relative w-20 h-20 mx-auto mb-3">
-                    <Image
-                      src="/Heroic.png"
-                      alt="HEROIC logo"
-                      fill
-                      className="object-contain"
-                      sizes="80px"
-                      priority
-                    />
-                  </div>
-                  <div className="text-white text-sm font-medium">South America</div>
-                </div>
-              </div>
-            </div>
-
-            {/* China */}
-            <div className="space-y-4">
-              <div className="text-center group">
-                <div className="text-white font-medium text-lg mb-3">Xtreme Gaming</div>
-                <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700/50 group-hover:border-purple-500/50 transition-all duration-300">
-                  <div className="relative w-20 h-20 mx-auto mb-3">
-                    <Image
-                      src="/Xtreme Gaming.png"
-                      alt="Xtreme Gaming logo"
-                      fill
-                      className="object-contain"
-                      sizes="80px"
-                      priority
-                    />
-                  </div>
-                  <div className="text-white text-sm font-medium">China</div>
-                </div>
-              </div>
-              <div className="text-center group">
-                <div className="text-white font-medium text-lg mb-3">Wildcard</div>
-                <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700/50 group-hover:border-purple-500/50 transition-all duration-300">
-                  <div className="relative w-20 h-20 mx-auto mb-3">
-                    <Image
-                      src="/WIldcard.png"
-                      alt="Wildcard logo"
-                      fill
-                      className="object-contain"
-                      sizes="80px"
-                      priority
-                    />
-                  </div>
-                  <div className="text-white text-sm font-medium">North America</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Southeast Asia */}
-            <div className="space-y-4">
-              <div className="text-center group">
-                <div className="text-white font-medium text-lg mb-3">Team Nemesis</div>
-                <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700/50 group-hover:border-purple-500/50 transition-all duration-300">
-                  <div className="relative w-20 h-20 mx-auto mb-3">
-                    <Image
-                      src="/Team Nemesis.png"
-                      alt="Team Nemesis logo"
-                      fill
-                      className="object-contain"
-                      sizes="80px"
-                      priority
-                    />
-                  </div>
-                  <div className="text-white text-sm font-medium">Southeast Asia</div>
-                </div>
-              </div>
-              <div className="text-center group">
-                <div className="text-white font-medium text-lg mb-3">BOOM Esports</div>
-                <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700/50 group-hover:border-purple-500/50 transition-all duration-300">
-                  <div className="relative w-20 h-20 mx-auto mb-3">
-                    <Image
-                      src="/Boom Esports.png"
-                      alt="BOOM Esports logo"
-                      fill
-                      className="object-contain"
-                      sizes="80px"
-                      priority
-                    />
-                  </div>
-                  <div className="text-white text-sm font-medium">Southeast Asia</div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
